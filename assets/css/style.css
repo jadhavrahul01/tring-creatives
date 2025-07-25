@@ -477,7 +477,7 @@ html {
 .service-card {
     position: relative;
     border-radius: 12px;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .service-image {
@@ -488,9 +488,8 @@ html {
 
 .service-icon {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: 30px;
+    bottom: 57px;
+    right: -62px;
     height: auto;
 }
 
@@ -506,11 +505,171 @@ html {
     font-weight: 600;
 }
 
-.service-content h3 span{
+.service-content h3 span {
     color: #E1647C;
 }
 
 .service-content p {
     margin: 0;
     font-size: 0.95rem;
+}
+
+.clients-circle-section {
+    background-color: #0011ff;
+    padding: 100px 0;
+    position: relative;
+}
+
+.circle-wrapper {
+    position: relative;
+    height: 700px;
+    margin: auto;
+}
+
+.circle-center {
+    width: 300px;
+    height: 300px;
+    background-color: #000d99;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 67%;
+    left: 52%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 2;
+}
+
+.brand-logo {
+    position: absolute;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.brand-logo:hover {
+    transform: scale(1.1);
+}
+
+/* Manually positioned brand logos */
+.logo-1 {
+    top: 0%;
+    left: 0%;
+}
+
+.logo-2 {
+    top: -4%;
+    left: 31%;
+}
+
+.logo-3 {
+    top: 15%;
+    left: 67%;
+}
+
+.logo-4 {
+    top: 0%;
+    left: 90%;
+}
+
+.logo-5 {
+    top: 18%;
+    left: 16%;
+}
+
+.logo-6 {
+    top: 27%;
+    left: 49%;
+}
+
+.logo-7 {
+    top: 32%;
+    left: 85%;
+}
+
+.logo-8 {
+    top: 37%;
+    left: 0%;
+}
+
+.logo-9 {
+    top: 33%;
+    left: 36%;
+}
+
+.logo-10 {
+    top: 35%;
+    left: 65%;
+}
+
+.logo-11 {
+    top: 46%;
+    left: 21%;
+}
+
+.logo-12 {
+    top: 41%;
+    left: 89%;
+}
+
+.logo-13 {
+    top: 60%;
+    left: 0%;
+}
+
+.logo-14 {
+    top: 74%;
+    left: 18%;
+}
+
+.logo-15 {
+    top: 63%;
+    left: 84%;
+}
+
+.logo-16 {
+    top: 85%;
+    left: 7%;
+}
+
+.logo-17 {
+    top: 80%;
+    left: 26%;
+}
+
+.logo-18 {
+    top: 80%;
+    left: 60%;
+}
+
+.logo-19 {
+    top: 76%;
+    left: 85%;
+}
+
+.logo-20 {
+    top: 58%;
+    left: 68%;
+}
+
+@media (max-width: 768px) {
+    .circle-wrapper {
+        width: 90vw;
+        height: 90vw;
+    }
+
+    .circle-center {
+        width: 120px;
+        height: 120px;
+        font-size: 1rem;
+    }
+
+    .brand-logo {
+        width: 60px;
+    }
 }
