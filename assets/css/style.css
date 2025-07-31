@@ -33,8 +33,7 @@ body {
 }
 
 .navbar-brand img {
-    height: 40px;
-    filter: brightness(0) invert(1);
+    width: 150px;
 }
 
 .glassy-nav {
@@ -91,7 +90,7 @@ body {
 }
 
 .hero-title {
-    font-size: 4.5rem;
+    font-size: 5rem;
     font-weight: 900;
     color: white;
     /* margin-bottom: 40px; */
@@ -121,15 +120,13 @@ body {
 }
 
 .hero-image-container {
-    position: relative;
-    /* margin-top: 60px; */
+    position: relative; 
     z-index: 2;
 }
 
 .hero-main-image {
     width: 100%;
-    height: auto;
-    /* max-width: 1200px; */
+    height: auto; 
     position: relative;
     z-index: 2;
     bottom: 30px;
@@ -139,11 +136,10 @@ body {
 .language-slider {
     position: relative;
     display: inline-block;
-    height: 1.2em;
-    overflow: hidden;
+    height: 1.2em; 
     vertical-align: top;
     width: auto;
-    min-width: 200px;
+    min-width: 350px;
 }
 
 .language-text {
