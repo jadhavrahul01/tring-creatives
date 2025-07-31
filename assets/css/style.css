@@ -827,7 +827,7 @@ html {
     font-size: clamp(3rem, 8vw, 8rem);
     font-weight: 900;
     color: transparent;
-    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.6);
+    -webkit-text-stroke: 2px rgba(255, 255, 255);
     letter-spacing: 8px;
     line-height: 0.9;
     text-transform: uppercase;
@@ -866,8 +866,8 @@ html {
 .footer-links li a {
     color: white;
     text-decoration: none;
-    font-weight: 600;
-    font-size: 1.2rem;
+    font-weight: 500;
+    font-size: 2rem;
     transition: all 0.3s ease;
     position: relative;
     display: inline-block;
@@ -904,10 +904,9 @@ html {
 .privacy-link {
     color: white;
     text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.3s ease; 
     letter-spacing: 1px;
 }
 
@@ -916,7 +915,7 @@ html {
 }
 
 .copyright-text {
-    color: #b8b8b8;
+    color: #717176;
     font-size: 0.9rem;
     margin: 0;
 }
@@ -960,8 +959,8 @@ html {
 }
 
 .back-to-top-text {
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 1.8rem;
+    font-weight: 500;
     letter-spacing: 1px;
 }
 
