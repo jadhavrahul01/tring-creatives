@@ -435,29 +435,44 @@
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 text-start">
+    <footer class="footer">
+        <div class="background-text">
+            <span style="--i: 1">TRING CREATIVES</span>
+            <span style="--i: 2">TRING CREATIVES</span>
+            <span style="--i: 3">TRING CREATIVES</span>
+            <span style="--i: 4">TRING CREATIVES</span>
+            <span style="--i: 5">TRING CREATIVES</span>
+            <span style="--i: 6">TRING CREATIVES</span>
+        </div>
+
+        <div class="container footer-content">
+            <div class="row h-100 align-items-end">
+                <div class="col-lg-4 col-md-12">
                     <ul class="footer-links">
-                        <li><a href="#">Work</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Tools</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#" data-text="Work">Work</a></li>
+                        <li><a href="#" data-text="Services">Services</a></li>
+                        <li><a href="#" data-text="Tools">Tools</a></li>
+                        <li><a href="#" data-text="About">About</a></li>
+                        <li><a href="#" data-text="Contact">Contact</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-4 copyright-txt d-flex flex-column align-items-center justify-content-end">
-                    <a href="" class="text-white">privacy policy</a>
-                    <p>
-                        Copyright © 2025 Tring Creatives.
-                    </p>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="copyright-section">
+                        <a href="#" class="privacy-link">Privacy Policy</a>
+                        <p class="copyright-text">
+                            Copyright © 2025 Tring Creatives.
+                        </p>
+                    </div>
                 </div>
-                <div class="col-lg-4 d-flex flex-column align-items-center justify-content-end">
-                    <button class="back-to-top d-flex flex-column align-items-center justify-content-end" onclick="scrollToTop()">
-                        <span class="arrow-up">&#8593;</span>
-                        <span>Back to Top</span>
-                    </button>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="d-flex justify-content-center justify-content-lg-end">
+                        <button class="back-to-top" onclick="scrollToTop()">
+                            <div class="arrow-up">↑</div>
+                            <span class="back-to-top-text">Back to Top</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -465,10 +480,28 @@
 
     <script>
         function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
 
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function () {
+            const links = document.querySelectorAll('.footer-links a');
+
+            links.forEach(link => {
+                link.addEventListener('mouseenter', function () {
+                    this.style.textShadow = '0 0 20px rgba(255, 255, 0, 0.5)';
+                });
+
+                link.addEventListener('mouseleave', function () {
+                    this.style.textShadow = 'none';
+                });
+            });
+        });
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
