@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./assets/css/style.css"> 
+    <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 
@@ -20,8 +20,7 @@
             <nav class="navbar navbar-expand-lg py-3">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">
-                        <img src="./assets/images/logo/logo.svg" class="logo"
-                            alt="Tring Creatives">
+                        <img src="./assets/images/logo/logo.svg" class="logo" alt="Tring Creatives">
                     </a>
                     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false"
@@ -62,7 +61,7 @@
                             Seamlessly Bridging Language,<br>Culture and Design
                         </p>
                         <h1 class="hero-title">
-                            <span class="language-slider">
+                            <span class="language-slider" id="languageSlider">
                                 <span class="language-text">TRING</span>
                                 <span class="language-text">ट्रिंग</span>
                                 <span class="language-text">ટ્રીંગ</span>
@@ -82,6 +81,59 @@
                 alt="Tring Creatives Hero Image">
         </div>
     </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const texts = document.querySelectorAll(".language-text");
+            let index = 0;
+            let direction = 1; // 1 = forward, -1 = backward
+            const forwardDelay = 1000;
+            const reverseDelay = 200;
+
+            function updateSlides(current, next, dir) {
+                // Remove all old animation classes
+                texts.forEach(el => {
+                    el.classList.remove(
+                        "slide-in-up", "slide-out-up",
+                        "slide-in-down", "slide-out-down"
+                    );
+                });
+
+                if (dir === 1) {
+                    // Forward: bottom → center → top
+                    texts[current]?.classList.add("slide-out-up");
+                    texts[next]?.classList.add("slide-in-up");
+                } else {
+                    // Reverse: top → center → bottom
+                    texts[current]?.classList.add("slide-out-down");
+                    texts[next]?.classList.add("slide-in-down");
+                }
+            }
+
+            function startSlider() {
+                const current = index;
+                index += direction;
+
+                if (index >= texts.length) {
+                    direction = -1;
+                    index = texts.length - 2;
+                } else if (index < 0) {
+                    direction = 1;
+                    index = 1;
+                }
+
+                updateSlides(current, index, direction);
+
+                setTimeout(startSlider, direction === 1 ? forwardDelay : reverseDelay);
+            }
+
+            // Initial state
+            texts[0].classList.add("slide-in-up");
+
+            setTimeout(startSlider, forwardDelay);
+        });
+    </script>
+
+
 
     <section class="full-bg-section">
         <img src="./assets/images/gifs/background-loop.gif" alt="Background" class="bg-gif" />
