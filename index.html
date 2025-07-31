@@ -81,6 +81,8 @@
                 alt="Tring Creatives Hero Image">
         </div>
     </section>
+
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const texts = document.querySelectorAll(".language-text");
@@ -88,9 +90,9 @@
             let direction = 1; // 1 = forward, -1 = backward
             const forwardDelay = 1000;
             const reverseDelay = 200;
+            const holdOnFirstTextDelay = 2000; // <-- Delay when showing "TRING" (index 0)
 
             function updateSlides(current, next, dir) {
-                // Remove all old animation classes
                 texts.forEach(el => {
                     el.classList.remove(
                         "slide-in-up", "slide-out-up",
@@ -99,11 +101,9 @@
                 });
 
                 if (dir === 1) {
-                    // Forward: bottom → center → top
                     texts[current]?.classList.add("slide-out-up");
                     texts[next]?.classList.add("slide-in-up");
                 } else {
-                    // Reverse: top → center → bottom
                     texts[current]?.classList.add("slide-out-down");
                     texts[next]?.classList.add("slide-in-down");
                 }
@@ -113,6 +113,7 @@
                 const current = index;
                 index += direction;
 
+                // Reverse direction at boundaries
                 if (index >= texts.length) {
                     direction = -1;
                     index = texts.length - 2;
@@ -123,15 +124,22 @@
 
                 updateSlides(current, index, direction);
 
-                setTimeout(startSlider, direction === 1 ? forwardDelay : reverseDelay);
+                // Hold when TRING (index 0) is shown
+                const delay =
+                    index === 0 ? holdOnFirstTextDelay :
+                        direction === 1 ? forwardDelay :
+                            reverseDelay;
+
+                setTimeout(startSlider, delay);
             }
 
-            // Initial state
+            // Initial appearance
             texts[0].classList.add("slide-in-up");
 
             setTimeout(startSlider, forwardDelay);
         });
     </script>
+
 
 
 
