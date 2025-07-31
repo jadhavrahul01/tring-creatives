@@ -12,24 +12,20 @@ html {
 }
 
 body {
-    /* background:
-        linear-gradient(rgba(0, 0, 231, 0.7), rgba(0, 0, 231, 0.7)),
-        url('/assets/images/texture/paper-texture.jpg'); */
-    /* <-- Update path if needed */
+    background-image: linear-gradient(135deg, rgb(17 17 239), rgb(18 18 237)), 
+    url('/assets/images/texture/paper-texture.jpg');
     background-size: cover;
+    background-blend-mode: multiply;
     background-repeat: repeat;
     background-attachment: fixed;
-    background-position: center;
     min-height: 100vh;
-    margin: 0;
-    padding: 0;
     color: #fff;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
 }
 
 .header {
-    background: linear-gradient(135deg, #0000E7 0%, #0A0AFF 100%);
+    /* background: linear-gradient(135deg, #0000E7 0%, #0A0AFF 100%); */
     position: relative;
     z-index: 1000;
 }
@@ -59,23 +55,11 @@ body {
 }
 
 .hero-section {
-    background: linear-gradient(135deg, #0000E7 0%, #0A0AFF 50%, #1A1AFF 100%);
+    /* background: linear-gradient(135deg, #0000E7 0%, #0A0AFF 50%, #1A1AFF 100%); */
     min-height: 100vh;
     position: relative;
     overflow: hidden;
     padding-bottom: 100px;
-}
-
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-    z-index: 1;
 }
 
 .hero-content {
@@ -334,7 +318,7 @@ body {
 }
 
 .global-voice-section {
-    background-color: #001bc5;
+    /* background-color: #001bc5; */
     color: #fff;
     padding: 60px 20px 80px;
 }
@@ -439,7 +423,7 @@ body {
 }
 
 .services-section {
-    background-color: #001bc5;
+    /* background-color: #001bc5; */
     padding: 60px 20px;
     color: white;
     text-align: center;
@@ -478,7 +462,7 @@ body {
 
 .service-content {
     padding: 16px;
-    background-color: #001bc5;
+    /* background-color: #001bc5; */
     text-align: left;
 }
 
@@ -498,7 +482,7 @@ body {
 }
 
 .clients-circle-section {
-    background-color: #0011ff;
+    /* background-color: #0011ff; */
     padding: 100px 0;
     position: relative;
 }
@@ -512,7 +496,7 @@ body {
 .circle-center {
     width: 300px;
     height: 300px;
-    background-color: #000d99;
+    /* background-color: #000d99; */
     color: white;
     font-weight: bold;
     font-size: 1.5rem;
@@ -664,7 +648,7 @@ body {
 
 
 .testimonials-section {
-    background-color: #001bc5;
+    /* background-color: #001bc5; */
     padding: 100px 20px 800px;
     text-align: center;
     height: 100vh;
