@@ -12,8 +12,8 @@ html {
 }
 
 body {
-    background-image: linear-gradient(135deg, rgb(17 17 239), rgb(18 18 237)), 
-    url('/assets/images/texture/paper-texture.jpg');
+    background-image: linear-gradient(135deg, rgb(17 17 239), rgb(18 18 237)),
+        url('/assets/images/texture/paper-texture.jpg');
     background-size: cover;
     background-blend-mode: multiply;
     background-repeat: repeat;
@@ -37,7 +37,7 @@ body {
 .glassy-nav {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgb(13 13 177);
 }
 
 .glassy-nav .nav-link {
@@ -256,7 +256,7 @@ body {
 }
 
 .glassy-nav {
-    background: rgb(0 0 231 / 43%);
+    background: #0d0db1;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1), 0 0 15px rgb(0 0 0 / 0%);
@@ -496,7 +496,7 @@ body {
 .circle-center {
     width: 300px;
     height: 300px;
-    /* background-color: #000d99; */
+    background-color: #000d99;
     color: white;
     font-weight: bold;
     font-size: 1.5rem;
@@ -788,12 +788,13 @@ body {
 
 .background-text span {
     display: block;
-    font-size: clamp(3rem, 8vw, 8rem);
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(2.5rem, 7vw, 7rem);
     font-weight: 900;
     color: transparent;
-    -webkit-text-stroke: 2px rgba(255, 255, 255);
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.6);
     letter-spacing: 8px;
-    line-height: 0.9;
+    line-height: 0.8;
     text-transform: uppercase;
     white-space: nowrap;
     animation: float 6s ease-in-out infinite;
