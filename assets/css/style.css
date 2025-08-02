@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
+@font-face {
+    font-family: 'Amagro';
+    src: url('/assets/fonts/amagro/Amagro-bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -138,6 +145,11 @@ body {
     transform: translateY(100%);
     transition: transform 0.8s ease, opacity 0.8s ease;
     z-index: 1;
+}
+
+.txt-style-amagro {
+    font-family: 'Amagro', sans-serif !important;
+    font-weight: bold; 
 }
 
 .language-text.slide-in-up {
