@@ -104,4 +104,119 @@
     .circle-center h2 {
         font-size: 1.1em;
     }
+
+
+    .logo-1 {
+        top: 0%;
+        left: 0%;
+        width: 82px;
+    }
+
+    .logo-2 {
+        top: -4%;
+        left: 31%;
+        width: 98px;
+    }
+
+    .logo-3 {
+        top: 10%;
+        left: 65%;
+        width: 81px;
+    }
+
+    .logo-4 {
+        top: 9%;
+        left: 79%;
+        width: 86px;
+    }
+
+    .logo-5 {
+        top: 15%;
+        left: 9%;
+        width: 87px;
+    }
+
+    .logo-6 {
+        top: 17%;
+        left: 55%;
+    }
+
+    .logo-7 {
+        top: 32%;
+        left: 85%;
+    }
+
+    .logo-8 {
+        top: 37%;
+        left: 0%;
+    }
+
+    .logo-9 {
+        top: 24%;
+        left: 36%;
+        width: 42px;
+    }
+
+    .logo-10 {
+        top: 35%;
+        left: 65%;
+    }
+
+    .logo-11 {
+        top: 40%;
+        left: 25%;
+    }
+
+    .logo-12 {
+        top: 44%;
+        left: 75%;
+        width: 83px;
+    }
+
+    .logo-13 {
+        top: 60%;
+        left: 0%;
+        width: 80px;
+    }
+
+    .logo-14 {
+        top: 78%;
+        left: 6%;
+    }
+
+    .logo-15 {
+        top: 63%;
+        left: 76%;
+        width: 80px;
+    }
+
+    .logo-16 {
+        top: 95%;
+        left: 1%;
+    }
+
+    .logo-17 {
+        top: 91%;
+        left: 22%;
+        width: 83px;
+    }
+
+    .logo-18 {
+        top: 90%;
+        left: 51%;
+    }
+
+    .logo-19 {
+        top: 73%;
+        left: 71%;
+    }
+
+    .logo-20 {
+        top: 91%;
+        left: 80%;
+    }
+
+    .clients-circle-section {
+        padding: 0px;
+    }
 }
