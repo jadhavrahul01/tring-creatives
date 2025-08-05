@@ -149,7 +149,7 @@ body {
 
 .txt-style-amagro {
     font-family: 'Amagro', sans-serif !important;
-    font-weight: bold; 
+    font-weight: bold;
 }
 
 .language-text.slide-in-up {
@@ -660,7 +660,6 @@ body {
 
 
 .testimonials-section {
-    /* background-color: #001bc5; */
     padding: 100px 20px 800px;
     text-align: center;
     height: 100vh;
@@ -728,12 +727,19 @@ body {
 .testimonial-swiper {
     overflow: visible !important;
     padding: 0 30px;
-    /* max-width: 1000px;
-    overflow: hidden; */
 }
 
-.swiper-slide {
-    width: 284px !important;
+.testimonial-card {
+    width: 284px;
+}
+
+.testimonial-swiper {
+    overflow: visible !important;
+    padding: 0 16px;
+}
+
+.testimonial-swiper .swiper-slide.far .testimonial-card {
+    width: 257px;
 }
 
 .testimonial-swiper .swiper-slide {

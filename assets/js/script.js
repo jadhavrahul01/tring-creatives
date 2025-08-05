@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // ==================== Swiper (Testimonial) ====================
 document.addEventListener("DOMContentLoaded", () => {
   const swiper = new Swiper(".testimonial-swiper", {
-    slidesPerView: "auto",
+    slidesPerView: 5,
     centeredSlides: true,
     loop: true,
     spaceBetween: 10,
@@ -76,12 +76,22 @@ document.addEventListener("DOMContentLoaded", () => {
       delay: 3000,
       disableOnInteraction: false,
     },
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+        centeredSlides: true,
+      },
+      768: {
+        slidesPerView: 5,
+        centeredSlides: true,
+      }, 
+    },
     on: {
       init() {
-        setTimeout(() => setCardStacking(this), 50);
+        setTimeout(() => setCardStacking(swiper), 50);
       },
       slideChangeTransitionEnd() {
-        setCardStacking(this);
+        setCardStacking(swiper);
       },
     },
   });
