@@ -1,18 +1,12 @@
-@media (min-width: 1200px) {
-    .language-slider {
-        min-width: 350px;
-        font-size: 24px;
-    }
-}
+@media (min-width: 1200px) {}
 
-@media (min-width: 768px) and (max-width: 991.98px) {
-    .language-slider {
-        min-width: 280px;
-        font-size: 18px;
-    }
-}
+@media (min-width: 768px) and (max-width: 991.98px) {}
 
 @media (max-width: 575.98px) {
+    html {
+        overflow-x: hidden;
+    }
+
     .language-slider {
         min-width: 120px;
         height: 1.8em;
@@ -23,6 +17,11 @@
     .hero-title {
         font-size: 2rem;
         margin-bottom: 0px;
+    }
+
+    .btn-hear-from-us {
+        padding: 8px 19px;
+        font-size: 0.6rem;
     }
 
     .hero-main-image {
@@ -39,7 +38,70 @@
         min-height: 50vh;
     }
 
-    .full-bg-section { 
+    .full-bg-section {
         height: 200px;
+    }
+
+    .global-voice-section h1 {
+        font-size: 1.5rem;
+    }
+
+    .star-icon {
+        width: 121px;
+    }
+
+    .global-voice-info {
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .global-voice-section h3 {
+        font-size: 2rem;
+    }
+
+    .global-voice-section p {
+        font-size: 1rem;
+    }
+
+    .stat-number {
+        font-size: 4em;
+    }
+
+    .stat-label {
+        font-size: 15px;
+    }
+
+    .divider {
+        border-left: none;
+    }
+
+    .sec-py {
+        padding: 50px 0;
+    }
+
+    .service-icon {
+        display: none;
+    }
+
+    .services-section {
+        padding: 60px 0px;
+    }
+
+    .service-content h3 {
+        margin-bottom: 8px;
+        font-size: 1.7rem;
+    }
+
+    .service-content p {
+        margin: 0;
+        font-size: 0.85rem;
+    }
+
+    .service-content {
+        padding: 16px 6px;
+    }
+
+    .circle-center h2 {
+        font-size: 1.1em;
     }
 }
