@@ -219,4 +219,27 @@
     .clients-circle-section {
         padding: 0px;
     }
+
+    .testimonials-section {
+        padding: 150px 20px 0px;
+    }
+
+    .footer {
+        min-height: 50vh;
+    }
+
+    .back-to-top-text {
+        font-size: 1rem;
+    }
+
+    .arrow-up {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+        margin-bottom: 3px;
+    }
+
+    .copyright-section {
+        margin-top: 33px;
+    }
 }
