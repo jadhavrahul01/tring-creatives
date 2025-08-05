@@ -147,7 +147,8 @@
     }
 
     .circle-center h2 {
-        font-size: 1.1em;
+        font-size: 1.2em;
+        width: 115px;
     }
 
 
@@ -291,9 +292,15 @@
 
     .background-text span {
         font-size: clamp(2rem, 1vw, 4rem);
+        letter-spacing: 1px;
+        line-height: 36px;
     }
 
     .navbar-brand img {
         width: 100px;
+    }
+
+    .background-text { 
+        top: -46px;
     }
 }
