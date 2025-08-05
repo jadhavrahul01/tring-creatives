@@ -243,4 +243,7 @@
     .copyright-section {
         margin-top: 33px;
     }
+    .background-text span {
+        font-size: clamp(2rem, 1vw, 4rem);
+    }
 }
