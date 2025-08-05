@@ -8,7 +8,7 @@
     }
 
     .language-slider {
-        min-width: 120px;
+        min-width: 100px;
         height: 1.8em;
         font-size: 2.1rem;
         text-align: center;
@@ -243,7 +243,12 @@
     .copyright-section {
         margin-top: 33px;
     }
+
     .background-text span {
         font-size: clamp(2rem, 1vw, 4rem);
+    }
+
+    .navbar-brand img {
+        width: 100px;
     }
 }
