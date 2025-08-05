@@ -7,6 +7,45 @@
         overflow-x: hidden;
     }
 
+    .header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .offcanvas-bg {
+        background-color: #0e0ec0 !important;
+    }
+
+    .navbar .nav-link {
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+    }
+
+    .navbar .nav-link.active,
+    .navbar .nav-link:hover {
+        color: #ffc107 !important;
+    }
+
+    .btn-contact {
+        padding: 0.5rem 1.2rem;
+        border-radius: 30px;
+        font-weight: 600;
+    }
+
+    .offcanvas .nav-link {
+        padding: 0.75rem 1rem;
+        font-size: 1.1rem;
+    }
+
+    .offcanvas .nav-link:hover {
+        color: #ffc107;
+    }
+
+    .logo {
+        height: 40px;
+    }
+
     .language-slider {
         min-width: 100px;
         height: 1.8em;
