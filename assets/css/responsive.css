@@ -1,0 +1,45 @@
+@media (min-width: 1200px) {
+    .language-slider {
+        min-width: 350px;
+        font-size: 24px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .language-slider {
+        min-width: 280px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .language-slider {
+        min-width: 120px;
+        height: 1.8em;
+        font-size: 2.1rem;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+        margin-bottom: 0px;
+    }
+
+    .hero-main-image {
+        width: 700px;
+        height: 200px;
+        position: relative;
+        z-index: 2;
+        object-fit: cover;
+        bottom: -50px;
+        overflow: hidden;
+    }
+
+    .hero-section {
+        min-height: 50vh;
+    }
+
+    .full-bg-section { 
+        height: 200px;
+    }
+}
