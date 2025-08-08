@@ -290,6 +290,33 @@
         margin-top: 33px;
     }
 
+    .service-slider-wrapper {
+        position: relative;
+        width: 100%;
+        min-height: 238px;
+    }
+
+    .service-card .card-body {
+        padding: 1em;
+    }
+
+    .card-content h4 {
+        font-size: 15px;
+    }
+
+    .card-content h2 {
+        font-size: 25px;
+    }
+
+    .card-content p {
+        font-size: 12px;
+        margin-bottom: 0px;
+    }
+
+    .card-img {
+        display: none;
+    }
+
     .background-text span {
         font-size: clamp(2rem, 1vw, 4rem);
         letter-spacing: 1px;
@@ -300,7 +327,7 @@
         width: 100px;
     }
 
-    .background-text { 
+    .background-text {
         top: -46px;
     }
 }

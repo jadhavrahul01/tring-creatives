@@ -947,6 +947,83 @@ body {
     letter-spacing: 1px;
 }
 
+/* Wrapper */
+.service-slider-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 745px;
+    overflow: hidden;
+}
+
+/* Card base style */
+.service-slider-wrapper .service-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateX(100%);
+    z-index: 1;
+    transition: transform 0.6s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+/* Active card (onscreen) */
+.service-slider-wrapper .service-card.active {
+    transform: translateX(0);
+    z-index: 2;
+}
+
+/* Slide out to the left */
+.service-slider-wrapper .service-card.slide-out-left {
+    transform: translateX(-100%);
+    z-index: 1;
+}
+
+/* Slide out to the right */
+.service-slider-wrapper .service-card.slide-out-right {
+    transform: translateX(100%);
+    z-index: 1;
+}
+
+/* Slide in from the left */
+.service-slider-wrapper .service-card.slide-in-left {
+    transform: translateX(0);
+    z-index: 2;
+}
+
+/* Slide in from the right */
+.service-slider-wrapper .service-card.slide-in-right {
+    transform: translateX(0);
+    z-index: 2;
+}
+
+/* Card internal layout (optional structure styles) */
+.service-card .card {
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+}
+
+.service-card .card-body {
+    padding: 5em;
+}
+
+.service-card .card-content {
+    height: auto;
+}
+
+/* Service content (outside slider) */
+.service-content {
+    position: relative;
+    z-index: 3;
+}
+
+
 @media (max-width: 768px) {
     .footer {
         padding: 40px 0;

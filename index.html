@@ -187,14 +187,47 @@
     <section class="services-section">
         <h2 class="services-title fs-1">OUR SERVICES</h2>
         <div class="services-grid container">
-            <div class="service-card">
-                <img src="./assets/images/gifs/path-to-your-translations.gif" alt="Translations" class="service-image">
-                <img src="./assets/images/icons/path-to-icon1.svg" alt="Icon" class="service-icon">
-                <div class="service-content">
-                    <h3>Translati<span>o</span>ns</h3>
-                    <p>Sometimes Translation or Dubbing is more than just words. It’s about cultural connection.</p>
+            <div class="service-slider-wrapper position-relative overflow-hidden">
+                <!-- First Card -->
+                <div class="service-card p-0 card-one active">
+                    <img src="./assets/images/gifs/path-to-your-translations.gif" alt="Translations"
+                        class="service-image h-100">
+                </div>
+                <!-- Second Card -->
+                <div class="service-card p-0 card-two">
+                    <div class="card h-100">
+                        <div class="card-body row align-items-center">
+                            <div class="col-lg-8">
+                                <div class="card-content text-start">
+                                    <h4><strong>Tring</strong> Creatives</h4>
+                                    <h2>Translations</h2>
+                                    <p>Beyond simple translation, our expert team meticulously adapts your designs
+                                        for
+                                        global markets, ensuring linguistic accuracy and deep cultural resonance.
+                                    </p>
+                                    <p>At Tring Creatives, we meticulously craft visual translations that resonate
+                                        deeply with
+                                        your target audiences.</p>
+                                    <p>We ensure your designs are not just understood, but truly felt and embraced
+                                        by
+                                        global communities.</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="card-img">
+                                    <img class="w-100" src="./assets/images/service/card-1.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="service-content pt-0">
+                <img src="./assets/images/icons/path-to-icon1.svg" alt="Icon" class="service-icon">
+                <h3>Translati<span>o</span>ns</h3>
+                <p>Sometimes Translation or Dubbing is more than just words. It’s about cultural connection.</p>
+            </div>
+
             <div class="service-card">
                 <img src="./assets/images/gifs/path-to-your-adaptions.gif" alt="Adaptions" class="service-image">
                 <img src="./assets/images/icons/path-to-icon2.svg" alt="Icon" class="service-icon">
@@ -213,6 +246,65 @@
             </div>
         </div>
     </section>
+
+    <script>
+        const cardOne = document.querySelector('.card-one');
+        const cardTwo = document.querySelector('.card-two');
+
+        let showingCard = 1; // 1 = cardOne visible, 2 = cardTwo visible
+        let lastDirection = 'right'; // toggle between 'left' and 'right'
+
+        function resetClasses(element) {
+            element.classList.remove(
+                'slide-in-left',
+                'slide-in-right',
+                'slide-out-left',
+                'slide-out-right',
+                'active'
+            );
+        }
+
+        function showCardOne() {
+            resetClasses(cardTwo);
+            resetClasses(cardOne);
+
+            // cardTwo out (slide opposite of last direction)
+            cardTwo.classList.add(lastDirection === 'right' ? 'slide-out-left' : 'slide-out-right');
+
+            // cardOne in (slide in from direction)
+            cardOne.classList.add('active', lastDirection === 'right' ? 'slide-in-right' : 'slide-in-left');
+
+            showingCard = 1;
+            lastDirection = lastDirection === 'right' ? 'left' : 'right';
+        }
+
+        function showCardTwo() {
+            resetClasses(cardOne);
+            resetClasses(cardTwo);
+
+            // cardOne out (slide opposite of last direction)
+            cardOne.classList.add(lastDirection === 'right' ? 'slide-out-left' : 'slide-out-right');
+
+            // cardTwo in (slide in from direction)
+            cardTwo.classList.add('active', lastDirection === 'right' ? 'slide-in-right' : 'slide-in-left');
+
+            showingCard = 2;
+            lastDirection = lastDirection === 'right' ? 'left' : 'right';
+        }
+
+        cardOne.addEventListener('click', () => {
+            if (showingCard === 1) {
+                showCardTwo();
+            }
+        });
+
+        cardTwo.addEventListener('click', () => {
+            if (showingCard === 2) {
+                showCardOne();
+            }
+        });
+    </script>
+
 
     <section class="clients-circle-section">
         <div class="circle-wrapper container">
