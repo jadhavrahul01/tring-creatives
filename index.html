@@ -228,14 +228,53 @@
                 <p>Sometimes Translation or Dubbing is more than just words. It’s about cultural connection.</p>
             </div>
 
-            <div class="service-card">
-                <img src="./assets/images/gifs/path-to-your-adaptions.gif" alt="Adaptions" class="service-image">
-                <img src="./assets/images/icons/path-to-icon2.svg" alt="Icon" class="service-icon">
-                <div class="service-content">
-                    <h3>Adapti<span>o</span>ns</h3>
-                    <p>Sometimes Translation or Dubbing is more than just words. It’s about cultural connection.</p>
+            <div class="service-slider-wrapper position-relative overflow-hidden">
+                <!-- First Card -->
+                <div class="service-card p-0 card-one active">
+                    <img src="./assets/images/gifs/path-to-your-adaptions.gif" alt="Translations"
+                        class="service-image h-100">
+                </div>
+                <!-- Second Card -->
+                <div class="service-card p-0 card-two">
+                    <div class="card h-100">
+                        <div class="card-body row align-items-center">
+                            <div class="col-lg-8">
+                                <div class="card-content text-start">
+                                    <h4><strong>Tring</strong> Creatives</h4>
+                                    <h2>Adaptions</h2>
+                                    <p>
+                                        Our expert team goes beyond simple resizing,
+                                        meticulously crafting your designs to thrive across every
+                                        platform and deeply resonate within diverse global
+                                        markets. Our process ensures your message feels native
+                                        and engaging, from mobile screens in India to billboards
+                                        internationally.
+                                    </p>
+                                    <p>
+                                        At Tring Creatives, we pay close attention to detail,
+                                        ensuring your visual assets are optimized for each specific
+                                        context. From adapting aspect ratios and formats to
+                                        considering local preferences
+                                    </p>
+                                    <p>Reach your global audience seamlessly. Your designs,
+                                        perfectly tailored for any platform, any culture.</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="card-img">
+                                    <img class="w-100" src="./assets/images/service/card-2.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="service-content pt-0">
+                <img src="./assets/images/icons/path-to-icon2.svg" alt="Icon" class="service-icon">
+                <h3>Adapti<span>o</span>ns</h3>
+                <p>Sometimes Translation or Dubbing is more than just words. It’s about cultural connection.</p>
+            </div>
+
             <div class="service-card">
                 <img src="./assets/images/gifs/path-to-your-branding.gif" alt="Branding" class="service-image">
                 <img src="./assets/images/icons/path-to-icon3.svg" alt="Icon" class="service-icon">
@@ -246,64 +285,56 @@
             </div>
         </div>
     </section>
-
     <script>
-        const cardOne = document.querySelector('.card-one');
-        const cardTwo = document.querySelector('.card-two');
+        document.querySelectorAll('.service-slider-wrapper').forEach(wrapper => {
+            const cardOne = wrapper.querySelector('.card-one');
+            const cardTwo = wrapper.querySelector('.card-two');
 
-        let showingCard = 1; // 1 = cardOne visible, 2 = cardTwo visible
-        let lastDirection = 'right'; // toggle between 'left' and 'right'
+            let showingCard = 1;
+            let lastDirection = 'right';
 
-        function resetClasses(element) {
-            element.classList.remove(
-                'slide-in-left',
-                'slide-in-right',
-                'slide-out-left',
-                'slide-out-right',
-                'active'
-            );
-        }
-
-        function showCardOne() {
-            resetClasses(cardTwo);
-            resetClasses(cardOne);
-
-            // cardTwo out (slide opposite of last direction)
-            cardTwo.classList.add(lastDirection === 'right' ? 'slide-out-left' : 'slide-out-right');
-
-            // cardOne in (slide in from direction)
-            cardOne.classList.add('active', lastDirection === 'right' ? 'slide-in-right' : 'slide-in-left');
-
-            showingCard = 1;
-            lastDirection = lastDirection === 'right' ? 'left' : 'right';
-        }
-
-        function showCardTwo() {
-            resetClasses(cardOne);
-            resetClasses(cardTwo);
-
-            // cardOne out (slide opposite of last direction)
-            cardOne.classList.add(lastDirection === 'right' ? 'slide-out-left' : 'slide-out-right');
-
-            // cardTwo in (slide in from direction)
-            cardTwo.classList.add('active', lastDirection === 'right' ? 'slide-in-right' : 'slide-in-left');
-
-            showingCard = 2;
-            lastDirection = lastDirection === 'right' ? 'left' : 'right';
-        }
-
-        cardOne.addEventListener('click', () => {
-            if (showingCard === 1) {
-                showCardTwo();
+            function resetClasses(element) {
+                element.classList.remove(
+                    'slide-in-left',
+                    'slide-in-right',
+                    'slide-out-left',
+                    'slide-out-right',
+                    'active'
+                );
             }
-        });
 
-        cardTwo.addEventListener('click', () => {
-            if (showingCard === 2) {
-                showCardOne();
+            function showCardOne() {
+                resetClasses(cardTwo);
+                resetClasses(cardOne);
+
+                cardTwo.classList.add(lastDirection === 'right' ? 'slide-out-left' : 'slide-out-right');
+                cardOne.classList.add('active', lastDirection === 'right' ? 'slide-in-right' : 'slide-in-left');
+
+                showingCard = 1;
+                lastDirection = lastDirection === 'right' ? 'left' : 'right';
             }
+
+            function showCardTwo() {
+                resetClasses(cardOne);
+                resetClasses(cardTwo);
+
+                cardOne.classList.add(lastDirection === 'right' ? 'slide-out-left' : 'slide-out-right');
+                cardTwo.classList.add('active', lastDirection === 'right' ? 'slide-in-right' : 'slide-in-left');
+
+                showingCard = 2;
+                lastDirection = lastDirection === 'right' ? 'left' : 'right';
+            }
+
+            cardOne.addEventListener('click', () => {
+                if (showingCard === 1) showCardTwo();
+            });
+
+            cardTwo.addEventListener('click', () => {
+                if (showingCard === 2) showCardOne();
+            });
         });
     </script>
+
 
 
     <section class="clients-circle-section">
