@@ -34,8 +34,8 @@ try {
     $mail->Port = 587; // TLS = 587, SSL = 465
 
     // Sender & Recipient
-    $mail->setFrom('your-email@yourdomain.com', 'Website Contact Form');
-    $mail->addAddress('receiver-email@example.com'); // Where to send
+    $mail->setFrom('dev@acsinsights.com', 'Website Contact Form');
+    $mail->addAddress('adarshtechdev@gmail.com'); // Where to send
 
     // Email content
     $mail->isHTML(true);
