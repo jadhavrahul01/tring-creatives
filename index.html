@@ -647,6 +647,257 @@
         </div>
     </footer>
 
+    <div id="myModal" class="modal">
+        <div class="modal-content d-flex flex-row flex-wrap align-items-center col-lg-12">
+            <!-- Left Side Image -->
+            <div class="modal-left d-lg-block d-none col-lg-6">
+                <img src="./assets/images/banner/bell-bg.png" alt="Offer Image">
+            </div>
+            <!-- Right Side Form -->
+            <div class="modal-right col-lg-6">
+                <span class="close">&times;</span>
+
+                <div class="success-message" id="successMessage">
+                    <strong>Success!</strong> Your message has been sent successfully. We'll get back to you soon!
+                </div>
+
+                <div class="loading" id="loadingDiv">
+                    <div class="spinner"></div>
+                    <p>Sending your message...</p>
+                </div>
+
+                <div id="formContainer">
+                    <h2><span>Ring us</span> now!</h2>
+                    <p>Contact us if you need further assistance.</p>
+
+                    <form id="contactForm">
+                        <label>Name and surname</label>
+                        <input type="text" id="name" name="name" >
+                        <div class="error-message" id="nameError"></div>
+
+                        <label>Email</label>
+                        <input type="email" id="email" name="email" >
+                        <div class="error-message" id="emailError"></div>
+
+                        <label>Please enter the details of your request</label>
+                        <textarea id="message" name="message" ></textarea>
+                        <div class="error-message" id="messageError"></div>
+
+                        <div class="text-end">
+                            <button type="submit" id="submitBtn">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="bell-icon">
+        <img src="./assets/images/icons/bell.png" alt="Bell" id="openModal">
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("openModal");
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function () {
+            modal.style.display = "block";
+            setTimeout(() => {
+                modal.classList.add("show");
+            }, 10);
+        }
+
+        span.onclick = function () {
+            modal.classList.remove("show");
+            setTimeout(() => {
+                modal.style.display = "none";
+                resetForm();
+            }, 400);
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.classList.remove("show");
+                setTimeout(() => {
+                    modal.style.display = "none";
+                    resetForm();
+                }, 400);
+            }
+        }
+
+        // Reset form function
+        function resetForm() {
+            document.getElementById('contactForm').reset();
+            hideAllErrors();
+            document.getElementById('successMessage').style.display = 'none';
+            document.getElementById('loadingDiv').style.display = 'none';
+            document.getElementById('formContainer').style.display = 'block';
+            document.getElementById('submitBtn').disabled = false;
+        }
+
+        // Hide all error messages
+        function hideAllErrors() {
+            const errors = document.querySelectorAll('.error-message');
+            errors.forEach(error => error.style.display = 'none');
+        }
+
+        // Show error message
+        function showError(fieldId, message) {
+            const errorElement = document.getElementById(fieldId + 'Error');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+
+        // Validate form
+        function validateForm() {
+            let isValid = true;
+            hideAllErrors();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            // Name validation
+            if (name === '') {
+                showError('name', 'Name is required.');
+                isValid = false;
+            } else if (name.length < 2) {
+                showError('name', 'Name must be at least 2 characters long.');
+                isValid = false;
+            }
+
+            // Email validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email === '') {
+                showError('email', 'Email is required.');
+                isValid = false;
+            } else if (!emailPattern.test(email)) {
+                showError('email', 'Please enter a valid email address.');
+                isValid = false;
+            }
+
+            // Message validation
+            if (message === '') {
+                showError('message', 'Message is required.');
+                isValid = false;
+            } else if (message.length < 10) {
+                showError('message', 'Message must be at least 10 characters long.');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // Form submission with AJAX
+        $(document).ready(function () {
+            $('#contactForm').on('submit', function (e) {
+                e.preventDefault();
+
+                if (!validateForm()) {
+                    return;
+                }
+
+                // Show loading
+                $('#loadingDiv').show();
+                $('#formContainer').hide();
+                $('#submitBtn').prop('disabled', true);
+
+                // Prepare form data
+                const formData = {
+                    name: $('#name').val().trim(),
+                    email: $('#email').val().trim(),
+                    message: $('#message').val().trim()
+                };
+
+                // AJAX request
+                $.ajax({
+                    url: 'mail.php', // You'll need to create this PHP file
+                    type: 'POST',
+                    data: formData,
+                    dataType: 'json',
+                    timeout: 10000,
+                    success: function (response) {
+                        $('#loadingDiv').hide();
+
+                        if (response.success) {
+                            $('#successMessage').show();
+                            $('#contactForm')[0].reset();
+
+                            // Auto close after 3 seconds
+                            setTimeout(function () {
+                                modal.classList.remove("show");
+                                setTimeout(() => {
+                                    modal.style.display = "none";
+                                    resetForm();
+                                }, 400);
+                            }, 3000);
+                        } else {
+                            $('#formContainer').show();
+                            alert('Error: ' + (response.message || 'Something went wrong. Please try again.'));
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        $('#loadingDiv').hide();
+                        $('#formContainer').show();
+
+                        let errorMessage = 'Network error. Please check your connection and try again.';
+                        if (status === 'timeout') {
+                            errorMessage = 'Request timeout. Please try again.';
+                        }
+
+                        alert(errorMessage);
+                        console.error('AJAX Error:', error);
+                    },
+                    complete: function () {
+                        $('#submitBtn').prop('disabled', false);
+                    }
+                });
+            });
+
+            // Real-time validation
+            $('#name').on('blur', function () {
+                const name = $(this).val().trim();
+                if (name !== '' && name.length < 2) {
+                    showError('name', 'Name must be at least 2 characters long.');
+                } else {
+                    $('#nameError').hide();
+                }
+            });
+
+            $('#email').on('blur', function () {
+                const email = $(this).val().trim();
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (email !== '' && !emailPattern.test(email)) {
+                    showError('email', 'Please enter a valid email address.');
+                } else {
+                    $('#emailError').hide();
+                }
+            });
+
+            $('#message').on('blur', function () {
+                const message = $(this).val().trim();
+                if (message !== '' && message.length < 10) {
+                    showError('message', 'Message must be at least 10 characters long.');
+                } else {
+                    $('#messageError').hide();
+                }
+            });
+        });
+
+        // Escape key to close modal
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                modal.classList.remove("show");
+                setTimeout(() => {
+                    modal.style.display = "none";
+                    resetForm();
+                }, 400);
+            }
+        });
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
