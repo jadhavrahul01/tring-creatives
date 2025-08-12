@@ -227,14 +227,14 @@ try {
             </div>";
 
     if (!empty($message)) {
-        $emailBody .= "
+        $htmlBody .= "
             <div class='field message-field'>
                 <span class='label'>💬 Message</span>
                 <div class='value'>" . nl2br(htmlspecialchars($message)) . "</div>
             </div>";
     }
 
-    $emailBody .= "
+    $htmlBody .= "
             <div class='field datetime-field'>
                 <span class='label'>🕒 Received on</span>
                 <div class='value'>$currentDateTime ($dayOfWeek)</div>

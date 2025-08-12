@@ -124,30 +124,6 @@ $(document).ready(function () {
             message: $('#message').val().trim()
         };
 
-        // Simulate AJAX request (replace with your actual endpoint)
-        setTimeout(() => {
-            // Simulate success (replace with actual AJAX call)
-            const success = Math.random() > 0.3; // 70% success rate for demo
-
-            if (success) {
-                $('#loadingDiv').hide();
-                $('#successMessage').show();
-                $('#contactForm')[0].reset();
-
-                // Auto close after 3 seconds
-                setTimeout(() => {
-                    closeModal();
-                }, 3000);
-            } else {
-                $('#loadingDiv').hide();
-                $('#formContainer').show();
-                alert('Error: Something went wrong. Please try again.');
-            }
-
-            $('#submitBtn').removeClass('loading').prop('disabled', false);
-        }, 2000);
-
-
         //Uncomment this for actual AJAX implementation
         $.ajax({
             url: 'mail.php',
