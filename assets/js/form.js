@@ -23,13 +23,18 @@ if (bellBtn) {
     bellBtn.onclick = openModal;
 }
 
-// ✅ Event delegation for ALL .btn-contact and .btn-hear-from-us (desktop + mobile)
+// ✅ Event delegation for ALL target buttons/links
 document.addEventListener("click", function (e) {
-    if (e.target.closest(".btn-contact") || e.target.closest(".btn-hear-from-us")) {
+    if (
+        e.target.closest(".btn-contact") ||
+        e.target.closest(".btn-hear-from-us") ||
+        e.target.closest(".footer-contact-link")
+    ) {
         e.preventDefault();
         openModal();
     }
 });
+
 
 // Close events
 span.onclick = closeModal;
