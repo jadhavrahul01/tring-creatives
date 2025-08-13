@@ -40,10 +40,10 @@ if (empty($email)) {
 
 if (empty($phone)) {
     $errors[] = 'Phone number is required';
-} elseif (!preg_match('/^\+?[0-9\s\-()]{7,15}$/', $phone)) {
-    $errors[] = 'Invalid phone number format';
-} elseif (strlen($phone) > 20) {
-    $errors[] = 'Phone number cannot exceed 20 characters';
+} elseif (!preg_match('/^(\+91[\-\s]?)?[6-9]\d{9}$/', $phone)) {
+    $errors[] = 'Invalid Indian phone number format';
+} elseif (strlen($phone) > 13) {
+    $errors[] = 'Phone number cannot exceed 13 characters';
 }
 
 if (empty($service)) {

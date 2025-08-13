@@ -98,10 +98,11 @@ function validateForm() {
     if (phone === '') {
         showError('phone', 'Phone number is required.');
         isValid = false;
-    } else if (!/^\d{10,15}$/.test(phone)) {
-        showError('phone', 'Please enter a valid phone number (10-15 digits).');
+    } else if (!/^(\+91[\-\s]?)?[6-9]\d{9}$/.test(phone)) {
+        showError('phone', 'Please enter a valid phone number.');
         isValid = false;
     }
+
 
     if (service === '') {
         showError('service', 'Service is required.');
@@ -184,9 +185,14 @@ $(document).ready(function () {
     });
 
     $('#phone').on('blur keyup', function () {
-        const val = $(this).val().trim();
-        if (val && !/^\d{10,15}$/.test(val)) showError('phone', 'Please enter a valid phone number (10-15 digits).');
-        else $('#phoneError').hide().prev().removeClass('error');
+        const val = $(this).val().trim(); 
+        const indianPhoneRegex = /^(\+91[\-\s]?)?[6-9]\d{9}$/;
+
+        if (val && !indianPhoneRegex.test(val)) {
+            showError('phone', 'Please enter a valid phone number.');
+        } else {
+            $('#phoneError').hide().prev().removeClass('error');
+        }
     });
 
     $('#service').on('blur keyup', function () {
