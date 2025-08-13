@@ -1113,10 +1113,10 @@ body {
     border: none;
     cursor: pointer;
 }
-
+/* 
 .modal-right button:hover {
     background: #0056b3;
-}
+} */
 
 /* Close button */
 .close {

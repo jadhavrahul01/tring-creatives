@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Privacy Policy | Tring Creatives</title>
+    <link rel="icon" href="./assets/images/logo/favicon.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
@@ -22,7 +23,7 @@
                 <div class="container-fluid">
 
                     <!-- Logo -->
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="index.html">
                         <img src="./assets/images/logo/logo.svg" class="logo" alt="Tring Creatives" height="40">
                     </a>
 
@@ -33,7 +34,7 @@
                     </button>
 
                     <!-- Desktop Nav (Hidden on mobile) -->
-                    <div class="collapse navbar-collapse d-none d-lg-flex justify-content-between">
+                    <div class="collapse w-100 navbar-collapse d-none d-lg-flex justify-content-between">
                         <ul class="navbar-nav glassy-nav mx-auto">
                             <li class="nav-item">
                                 <a class="nav-link text-white active" aria-current="page" href="#">Home</a>
@@ -189,6 +190,82 @@
         </div>
     </footer>
 
+    <div id="myModal" class="modal">
+        <div class="modal-content d-flex flex-row flex-wrap align-items-center col-lg-12">
+            <!-- Left Side Image -->
+            <div class="modal-left d-lg-block d-none col-lg-6">
+                <img src="./assets/images/banner/bell-bg.png" alt="Offer Image">
+            </div>
+            <!-- Right Side Form -->
+            <div class="modal-right col-lg-6 col-12">
+                <span class="close">&times;</span>
+
+                <!-- Success Message -->
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i>
+                    <h5>Success!</h5>
+                    <p>Your message has been sent successfully. We'll get back to you soon!</p>
+                </div>
+
+                <!-- Loading -->
+                <div class="loading" id="loadingDiv">
+                    <div class="spinner"></div>
+                    <h5>Sending your message...</h5>
+                    <p>Please wait while we process your request.</p>
+                </div>
+
+                <!-- Form Container -->
+                <div id="formContainer">
+                    <h2><span>Ring us</span> now!</h2>
+                    <p class="text-dark">Contact us if you need further assistance.</p>
+
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" class="form-control">
+                            <div class="error-message" id="nameError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Mobile Number *</label>
+                            <input type="phone" id="phone" name="phone" class="form-control">
+                            <div class="error-message" id="phoneError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" class="form-control">
+                            <div class="error-message" id="emailError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service">Service *</label>
+                            <input type="text" id="service" name="service" class="form-control">
+                            <div class="error-message" id="serviceError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Please enter the details of your request *</label>
+                            <textarea id="message" name="message" class="form-control"></textarea>
+                            <div class="error-message" id="messageError"></div>
+                        </div>
+
+                        <div class="text-end">
+                            <button type="submit" id="submitBtn" class="btn-submit">
+                                <span class="btn-spinner"></span>
+                                <span class="btn-text">Submit</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bell-icon">
+        <img src="./assets/images/icons/bell.png" alt="Bell" id="openModal">
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./assets/js/form.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
