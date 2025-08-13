@@ -23,9 +23,9 @@ if (bellBtn) {
     bellBtn.onclick = openModal;
 }
 
-// ✅ Event delegation for ALL .btn-contact (desktop + mobile)
+// ✅ Event delegation for ALL .btn-contact and .btn-hear-from-us (desktop + mobile)
 document.addEventListener("click", function (e) {
-    if (e.target.closest(".btn-contact")) {
+    if (e.target.closest(".btn-contact") || e.target.closest(".btn-hear-from-us")) {
         e.preventDefault();
         openModal();
     }
@@ -185,7 +185,7 @@ $(document).ready(function () {
     });
 
     $('#phone').on('blur keyup', function () {
-        const val = $(this).val().trim(); 
+        const val = $(this).val().trim();
         const indianPhoneRegex = /^(\+91[\-\s]?)?[6-9]\d{9}$/;
 
         if (val && !indianPhoneRegex.test(val)) {
