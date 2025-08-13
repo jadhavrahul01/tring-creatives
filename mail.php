@@ -92,7 +92,7 @@ try {
     $mail->Host = 'smtp.hostinger.com'; // Hostinger SMTP server
     $mail->SMTPAuth = true;
     $mail->Username = 'dev@acsinsights.com'; // Your Hostinger email
-    $mail->Password = 'pass';  // Your Hostinger email password
+    $mail->Password = '8B*Y9*gVr_NcUFC';  // Your Hostinger email password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587; // TLS port
 
