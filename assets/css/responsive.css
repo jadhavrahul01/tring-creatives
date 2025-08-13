@@ -338,10 +338,15 @@
 
     .service-card .card-content h2 {
         font-size: 16px;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
 
     .service-card .card-content p {
         font-size: 8.8px;
+    }
+
+    .service-card .card-content .subtitle {
+        font-size: 13px !important;
+        margin-bottom: 10px;
     }
 }
