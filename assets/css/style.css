@@ -768,7 +768,7 @@ body {
 }
 
 .testimonial-swiper .swiper-slide.more-far {
-    transform: translateY(230px) scale(1);
+    transform: translateY(230px) scale(0.9);
     z-index: 3;
 }
 
