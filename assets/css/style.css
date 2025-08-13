@@ -36,6 +36,7 @@ body {
     position: relative;
     z-index: 1000;
 }
+
 /* 
 .navbar-brand img {
     width: 150px;
@@ -1014,7 +1015,7 @@ body {
 }
 
 .service-card .card-body {
-    padding: 5em;
+    padding: 4em 5em;
 }
 
 .service-card .card-content {
@@ -1026,8 +1027,9 @@ body {
     margin-bottom: 30px;
     font-weight: 700;
 }
+
 .service-card .card-content p {
-    font-size: 1.1em; 
+    font-size: 1.3em;
 }
 
 /* Service content (outside slider) */
