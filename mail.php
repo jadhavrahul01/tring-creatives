@@ -104,7 +104,7 @@ try {
     $mail->addReplyTo($email, $name); // User can reply directly to the sender
 
     // Recipient
-    $mail->addAddress('adarshtechdev@gmail.com', 'Support Team');
+    $mail->addAddress('rohit@tringcreatives.com', 'Tring Creatives Team');
 
     // Email content
     $mail->isHTML(true);
