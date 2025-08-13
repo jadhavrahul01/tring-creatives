@@ -334,4 +334,13 @@
     .background-text {
         top: -46px;
     }
+
+    .service-card .card-content h2 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .service-card .card-content p {
+        font-size: 10px;
+    }
 }
