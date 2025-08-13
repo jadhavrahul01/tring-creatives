@@ -1021,6 +1021,14 @@ body {
     height: auto;
 }
 
+.service-card .card-content h2 {
+    font-size: 3em;
+    margin-bottom: 30px;
+}
+.service-card .card-content p {
+    font-size: 1.1em; 
+}
+
 /* Service content (outside slider) */
 .service-content {
     position: relative;
