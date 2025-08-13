@@ -201,3 +201,70 @@ document.addEventListener("DOMContentLoaded", function () {
 
   setTimeout(startSlider, delay);
 });
+
+
+// ==================== Mobile Menu Smooth Scroll ====================
+document.addEventListener("DOMContentLoaded", () => {
+  const menu = document.getElementById("mobileMenu");
+  const offcanvas = bootstrap.Offcanvas.getOrCreateInstance(menu);
+
+  menu.querySelectorAll(".nav-link[href^='#']").forEach(link => {
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      const id = link.getAttribute("href");
+      offcanvas.hide();
+      menu.addEventListener("hidden.bs.offcanvas", () =>
+        document.querySelector(id)?.scrollIntoView({ behavior: "smooth" }),
+        { once: true });
+    });
+  });
+});
+
+// ==================== Service Slider Animation ====================
+document.querySelectorAll('.service-slider-wrapper').forEach(wrapper => {
+  const cardOne = wrapper.querySelector('.card-one');
+  const cardTwo = wrapper.querySelector('.card-two');
+
+  let showingCard = 1;
+  let lastDirection = 'right';
+
+  function resetClasses(element) {
+    element.classList.remove(
+      'slide-in-left',
+      'slide-in-right',
+      'slide-out-left',
+      'slide-out-right',
+      'active'
+    );
+  }
+
+  function showCardOne() {
+    resetClasses(cardTwo);
+    resetClasses(cardOne);
+
+    cardTwo.classList.add(lastDirection === 'right' ? 'slide-out-left' : 'slide-out-right');
+    cardOne.classList.add('active', lastDirection === 'right' ? 'slide-in-right' : 'slide-in-left');
+
+    showingCard = 1;
+    lastDirection = lastDirection === 'right' ? 'left' : 'right';
+  }
+
+  function showCardTwo() {
+    resetClasses(cardOne);
+    resetClasses(cardTwo);
+
+    cardOne.classList.add(lastDirection === 'right' ? 'slide-out-left' : 'slide-out-right');
+    cardTwo.classList.add('active', lastDirection === 'right' ? 'slide-in-right' : 'slide-in-left');
+
+    showingCard = 2;
+    lastDirection = lastDirection === 'right' ? 'left' : 'right';
+  }
+
+  cardOne.addEventListener('click', () => {
+    if (showingCard === 1) showCardTwo();
+  });
+
+  cardTwo.addEventListener('click', () => {
+    if (showingCard === 2) showCardOne();
+  });
+}); 
