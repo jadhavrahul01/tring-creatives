@@ -93,7 +93,8 @@
 
     .star-icon {
         width: 112px;
-        margin-left: 0px;
+        margin-left: 4px;
+        margin-top: 20px;
     }
 
     .global-voice-info {
