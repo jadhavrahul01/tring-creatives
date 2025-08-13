@@ -674,27 +674,34 @@
                 <!-- Form Container -->
                 <div id="formContainer">
                     <h2><span>Ring us</span> now!</h2>
-                    <p>Contact us if you need further assistance.</p>
+                    <p class="text-dark">Contact us if you need further assistance.</p>
 
                     <form id="contactForm">
                         <div class="form-group">
-                            <label for="name">Name and surname *</label>
-                            <input type="text" id="name" name="name" class="form-control"
-                                placeholder="Enter your full name">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" class="form-control">
                             <div class="error-message" id="nameError"></div>
                         </div>
-
+                        
+                        <div class="form-group">
+                            <label for="phone">Mobile Number *</label>
+                            <input type="phone" id="phone" name="phone" class="form-control">
+                            <div class="error-message" id="phoneError"></div>
+                        </div>
                         <div class="form-group">
                             <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" class="form-control"
-                                placeholder="Enter your email address">
+                            <input type="email" id="email" name="email" class="form-control">
                             <div class="error-message" id="emailError"></div>
                         </div>
-
+                        
+                        <div class="form-group">
+                            <label for="service">Service *</label>
+                            <input type="text" id="service" name="service" class="form-control">
+                            <div class="error-message" id="serviceError"></div>
+                        </div>
                         <div class="form-group">
                             <label for="message">Please enter the details of your request *</label>
-                            <textarea id="message" name="message" class="form-control"
-                                placeholder="Tell us how we can help you..."></textarea>
+                            <textarea id="message" name="message" class="form-control"></textarea>
                             <div class="error-message" id="messageError"></div>
                         </div>
 

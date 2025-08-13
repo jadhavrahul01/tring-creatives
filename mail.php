@@ -38,6 +38,22 @@ if (empty($email)) {
     $errors[] = 'Email address too long';
 }
 
+if (empty($phone)) {
+    $errors[] = 'Phone number is required';
+} elseif (!preg_match('/^\+?[0-9\s\-()]{7,15}$/', $phone)) {
+    $errors[] = 'Invalid phone number format';
+} elseif (strlen($phone) > 20) {
+    $errors[] = 'Phone number cannot exceed 20 characters';
+}
+
+if (empty($service)) {
+    $errors[] = 'Service is required';
+} elseif (strlen($service) < 2) {
+    $errors[] = 'Service must be at least 2 characters long';
+} elseif (strlen($service) > 100) {
+    $errors[] = 'Service cannot exceed 100 characters';
+}
+
 if (empty($message)) {
     $errors[] = 'Message is required';
 } elseif (strlen($message) < 10) {
@@ -58,6 +74,8 @@ if (!empty($errors)) {
 // Sanitize input
 $name = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
 $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
+$phone = htmlspecialchars($phone, ENT_QUOTES, 'UTF-8');
+$service = htmlspecialchars($service, ENT_QUOTES, 'UTF-8');
 $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
 
 // Create PHPMailer instance
@@ -69,7 +87,7 @@ try {
     $mail->Host = 'smtp.hostinger.com'; // Hostinger SMTP server
     $mail->SMTPAuth = true;
     $mail->Username = 'dev@acsinsights.com'; // Your Hostinger email
-    $mail->Password = '8B*Y9*gVr_NcUFC';  // Your Hostinger email password
+    $mail->Password = 'pass';  // Your Hostinger email password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587; // TLS port
 
@@ -224,6 +242,16 @@ try {
             <div class='field'>
                 <span class='label'>📧 Email Address</span>
                 <span class='value'><a href='mailto:$email'>$email</a></span>
+            </div>
+            
+            <div class='field'>
+                <span class='label'>📞 Phone Number</span>
+                <span class='value'>$phone</span>
+            </div>
+
+            <div class='field'>
+                <span class='label'>🛠️ Service Interested In</span>
+                <span class='value'>$service</span>
             </div>";
 
     if (!empty($message)) {

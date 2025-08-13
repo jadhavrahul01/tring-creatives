@@ -1,7 +1,6 @@
 // Modal Elements
 var modal = document.getElementById("myModal");
 var bellBtn = document.getElementById("openModal");
-var contactBtn = document.querySelector(".btn-contact");
 var span = document.getElementsByClassName("close")[0];
 
 // Open modal function
@@ -23,12 +22,14 @@ function closeModal() {
 if (bellBtn) {
     bellBtn.onclick = openModal;
 }
-if (contactBtn) {
-    contactBtn.addEventListener("click", function (e) {
+
+// ✅ Event delegation for ALL .btn-contact (desktop + mobile)
+document.addEventListener("click", function (e) {
+    if (e.target.closest(".btn-contact")) {
         e.preventDefault();
         openModal();
-    });
-}
+    }
+});
 
 // Close events
 span.onclick = closeModal;
@@ -73,6 +74,8 @@ function validateForm() {
 
     const name = $('#name').val().trim();
     const email = $('#email').val().trim();
+    const phone = $('#phone').val().trim();
+    const service = $('#service').val().trim();
     const message = $('#message').val().trim();
 
     if (name === '') {
@@ -89,6 +92,22 @@ function validateForm() {
         isValid = false;
     } else if (!emailPattern.test(email)) {
         showError('email', 'Please enter a valid email address.');
+        isValid = false;
+    }
+
+    if (phone === '') {
+        showError('phone', 'Phone number is required.');
+        isValid = false;
+    } else if (!/^\d{10,15}$/.test(phone)) {
+        showError('phone', 'Please enter a valid phone number (10-15 digits).');
+        isValid = false;
+    }
+
+    if (service === '') {
+        showError('service', 'Service is required.');
+        isValid = false;
+    } else if (service.length < 2) {
+        showError('service', 'Service must be at least 2 characters long.');
         isValid = false;
     }
 
@@ -117,11 +136,13 @@ $(document).ready(function () {
         const formData = {
             name: $('#name').val().trim(),
             email: $('#email').val().trim(),
+            phone: $('#phone').val().trim(),
+            service: $('#service').val().trim(),
             message: $('#message').val().trim()
         };
 
         $.ajax({
-            url: 'mail.php', // PHP mailer file
+            url: 'mail.php',
             type: 'POST',
             data: formData,
             dataType: 'json',
@@ -160,6 +181,18 @@ $(document).ready(function () {
         const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (val && !pattern.test(val)) showError('email', 'Please enter a valid email address.');
         else $('#emailError').hide().prev().removeClass('error');
+    });
+
+    $('#phone').on('blur keyup', function () {
+        const val = $(this).val().trim();
+        if (val && !/^\d{10,15}$/.test(val)) showError('phone', 'Please enter a valid phone number (10-15 digits).');
+        else $('#phoneError').hide().prev().removeClass('error');
+    });
+
+    $('#service').on('blur keyup', function () {
+        const val = $(this).val().trim();
+        if (val && val.length < 2) showError('service', 'Service must be at least 2 characters long.');
+        else $('#serviceError').hide().prev().removeClass('error');
     });
 
     $('#message').on('blur keyup', function () {
