@@ -140,8 +140,7 @@ $(document).ready(function () {
                 }, 3000);
             } else {
                 $('#loadingDiv').hide();
-                $('#formContainer').show();
-                alert('Error: Something went wrong. Please try again.');
+                $('#formContainer').show(); 
             }
 
             $('#submitBtn').removeClass('loading').prop('disabled', false);
