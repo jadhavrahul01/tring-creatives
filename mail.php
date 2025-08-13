@@ -5,6 +5,9 @@ use PHPMailer\PHPMailer\SMTP;
 
 require 'vendor/autoload.php'; // PHPMailer path
 
+// Set timezone to India
+date_default_timezone_set('Asia/Kolkata');
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
@@ -89,7 +92,7 @@ try {
     $mail->Host = 'smtp.hostinger.com'; // Hostinger SMTP server
     $mail->SMTPAuth = true;
     $mail->Username = 'dev@acsinsights.com'; // Your Hostinger email
-    $mail->Password = '8B*Y9*gVr_NcUFC';  // Your Hostinger email password
+    $mail->Password = 'pass';  // Your Hostinger email password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587; // TLS port
 
@@ -294,18 +297,6 @@ try {
 
     // Send email
     $mail->send();
-    // Log the enquiry (optional) - Indian timezone
-    $logData = [
-        'timestamp' => date('Y-m-d H:i:s'),
-        'indian_time' => $currentDateTime,
-        'day' => $dayOfWeek,
-        'name' => $name,
-        'email' => $email,
-        'phone' => $phone,
-        'service' => $service,
-        'message' => $message,
-        'source' => $source
-    ];
     // Log successful submission (optional)
     error_log("Contact form submitted successfully by: $email at " . date('Y-m-d H:i:s'));
 
