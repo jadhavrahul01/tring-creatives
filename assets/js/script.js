@@ -45,23 +45,40 @@ if (navbarToggler && navbarCollapse) {
 // ==================== Counter Animation ====================
 document.addEventListener("DOMContentLoaded", () => {
   const counters = document.querySelectorAll(".count");
-  counters.forEach((counter) => {
-    const target = +counter.getAttribute("data-count");
-    let count = 0;
-    const step = target / 100;
+  let started = false; // prevent multiple triggers
 
-    const updateCount = () => {
-      if (count < target) {
-        count += step;
-        counter.innerText = Math.ceil(count);
-        requestAnimationFrame(updateCount);
-      } else {
-        counter.innerText = target;
+  function startCounter() {
+    counters.forEach((counter) => {
+      const targetStr = counter.getAttribute("data-count"); // string version
+      const target = parseInt(targetStr, 10); // number for counting
+      let count = 0;
+      const step = target / 100;
+
+      const updateCount = () => {
+        if (count < target) {
+          count += step;
+          counter.innerText = String(Math.ceil(count)).padStart(targetStr.length, "0");
+          requestAnimationFrame(updateCount);
+        } else {
+          counter.innerText = targetStr; // final with leading zero
+        }
+      };
+
+      updateCount();
+    });
+  }
+
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !started) {
+        startCounter();
+        started = true;
       }
-    };
+    });
+  }, { threshold: 0.3 }); // triggers when 30% of the section is visible
 
-    updateCount();
-  });
+  observer.observe(document.querySelector(".stats-section"));
 });
 
 // ==================== Swiper (Testimonial) ====================
@@ -84,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
       768: {
         slidesPerView: 5,
         centeredSlides: true,
-      }, 
+      },
     },
     on: {
       init() {
