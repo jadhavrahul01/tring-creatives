@@ -1024,6 +1024,7 @@ body {
 .service-card .card-content h2 {
     font-size: 3em;
     margin-bottom: 30px;
+    font-weight: 700;
 }
 .service-card .card-content p {
     font-size: 1.1em; 
