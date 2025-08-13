@@ -377,8 +377,9 @@ body {
 }
 
 .star-icon {
-    width: 240px;
+    width: 300px;
     height: auto;
+    margin-left: 4em;
 }
 
 .stats {
@@ -1029,6 +1030,7 @@ body {
     right: 10%;
     bottom: 10%;
 }
+
 .btn-service:hover {
     background-color: #ea5D49;
     text-decoration: none;
