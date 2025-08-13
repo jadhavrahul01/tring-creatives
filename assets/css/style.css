@@ -1018,6 +1018,29 @@ body {
     padding: 4em 5em;
 }
 
+.btn-service {
+    background-color: #ea5D49;
+    text-decoration: none;
+    color: white;
+    position: absolute;
+    border-radius: 0px;
+    padding: 5px 25px;
+    z-index: 999;
+    right: 10%;
+    bottom: 10%;
+}
+.btn-service:hover {
+    background-color: #ea5D49;
+    text-decoration: none;
+    color: white;
+    position: absolute;
+    border-radius: 0px;
+    padding: 5px 25px;
+    z-index: 999;
+    right: 10%;
+    bottom: 10%;
+}
+
 .service-card .card-content {
     height: auto;
 }
