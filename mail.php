@@ -231,42 +231,42 @@ try {
 <body>
     <div class='email-container'>
         <div class='header'>
-            <h1>📧 New Contact Form Submission</h1>
+            <h1> New Contact Form Submission</h1>
             <div class='source-tag'>Tring Website</div>
         </div>
         
         <div class='content'>
             <div class='field'>
-                <span class='label'>👤 Full Name</span>
+                <span class='label'> Full Name</span>
                 <span class='value'>$name</span>
             </div>
             
             <div class='field'>
-                <span class='label'>📧 Email Address</span>
+                <span class='label'> Email Address</span>
                 <span class='value'><a href='mailto:$email'>$email</a></span>
             </div>
             
             <div class='field'>
-                <span class='label'>📞 Phone Number</span>
+                <span class='label'> Phone Number</span>
                 <span class='value'>$phone</span>
             </div>
 
             <div class='field'>
-                <span class='label'>🛠️ Service Interested In</span>
+                <span class='label'> Service Interested In</span>
                 <span class='value'>$service</span>
             </div>";
 
     if (!empty($message)) {
         $htmlBody .= "
             <div class='field message-field'>
-                <span class='label'>💬 Message</span>
+                <span class='label'> Message</span>
                 <div class='value'>" . nl2br(htmlspecialchars($message)) . "</div>
             </div>";
     }
 
     $htmlBody .= "
             <div class='field datetime-field'>
-                <span class='label'>🕒 Received on</span>
+                <span class='label'> Received on</span>
                 <div class='value'>$currentDateTime ($dayOfWeek)</div>
             </div>
         </div>
@@ -294,7 +294,18 @@ try {
 
     // Send email
     $mail->send();
-
+    // Log the enquiry (optional) - Indian timezone
+    $logData = [
+        'timestamp' => date('Y-m-d H:i:s'),
+        'indian_time' => $currentDateTime,
+        'day' => $dayOfWeek,
+        'name' => $name,
+        'email' => $email,
+        'phone' => $phone,
+        'service' => $service,
+        'message' => $message,
+        'source' => $source
+    ];
     // Log successful submission (optional)
     error_log("Contact form submitted successfully by: $email at " . date('Y-m-d H:i:s'));
 
