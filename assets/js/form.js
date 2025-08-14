@@ -82,7 +82,7 @@ function validateForm() {
     const company_name = $('#company_name').val().trim();
     const phone = $('#phone').val().trim();
     const service = $('#service').val().trim();
-    // const message = $('#message').val().trim();
+    const message = $('#message').val().trim();
 
     if (name === '') {
         showError('name', 'Name is required.');
