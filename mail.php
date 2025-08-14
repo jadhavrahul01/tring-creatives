@@ -104,7 +104,7 @@ try {
     $mail->addReplyTo($email, $name); // User can reply directly to the sender
 
     // Recipient
-    $mail->addAddress('rohit@tringcreatives.com', 'Tring Creatives Team');
+    $mail->addAddress('adarshtechdev@gmail.com', 'Tring Creatives Team');
 
     // Email content
     $mail->isHTML(true);
@@ -297,21 +297,18 @@ try {
 
     // Send email
     $mail->send();
-    // Log successful submission (optional)
-    error_log("Contact form submitted successfully by: $email at " . date('Y-m-d H:i:s'));
 
-    echo json_encode([
-        'status' => 'success',
-        'message' => 'Your message has been sent successfully!'
-    ]);
+    $mail->send();
+    header("Location: thank-you.html");
+    exit;
 
 } catch (Exception $e) {
-    // Log error details
-    error_log("Contact form submission failed: " . $mail->ErrorInfo);
-
+    // Log error and return response
+    error_log('Mailer Error: ' . $mail->ErrorInfo);
     echo json_encode([
         'status' => 'error',
-        'message' => 'Sorry, there was an error sending your message. Please try again later.'
+        'message' => 'Failed to send email. Please try again later.'
     ]);
+    exit;
 }
 ?>
