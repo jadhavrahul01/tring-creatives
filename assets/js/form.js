@@ -74,6 +74,7 @@ function validateForm() {
 
     const name = $('#name').val().trim();
     const email = $('#email').val().trim();
+    const company_name = $('#company_name').val().trim(); // Optional field
     const phone = $('#phone').val().trim();
     const service = $('#service').val().trim();
     const message = $('#message').val().trim();
@@ -95,6 +96,14 @@ function validateForm() {
         isValid = false;
     }
 
+    if (company_name === '') {
+        showError('company_name', 'Company name is required.');
+        isValid = false;
+    } else if (company_name.length < 2) {
+        showError('company_name', 'Company name must be at least 2 characters long.');
+        isValid = false;
+    }
+
     if (phone === '') {
         showError('phone', 'Phone number is required.');
         isValid = false;
@@ -111,13 +120,13 @@ function validateForm() {
         isValid = false;
     }
 
-    if (message === '') {
-        showError('message', 'Message is required.');
-        isValid = false;
-    } else if (message.length < 10) {
-        showError('message', 'Message must be at least 10 characters long.');
-        isValid = false;
-    }
+    // if (message === '') {
+    //     showError('message', 'Message is required.');
+    //     isValid = false;
+    // } else if (message.length < 10) {
+    //     showError('message', 'Message must be at least 10 characters long.');
+    //     isValid = false;
+    // }
 
     return isValid;
 }
@@ -161,6 +170,17 @@ $(document).ready(function () {
         }
     });
 
+    $('#company_name').on('blur keyup', function () {
+        const val = $(this).val().trim();
+        if (val && val.length < 2) {
+            showError('company_name', 'Company Name must be at least 2 characters long.');
+        } else {
+            $('#company_nameError').hide();
+            $(this).removeClass('error');
+        }
+    });
+
+
     $('#phone').on('blur keyup', function () {
         const val = $(this).val().trim();
         const indianPhoneRegex = /^(\+91[\-\s]?)?[6-9]\d{9}$/;
@@ -183,13 +203,13 @@ $(document).ready(function () {
         }
     });
 
-    $('#message').on('blur keyup', function () {
-        const val = $(this).val().trim();
-        if (val && val.length < 10) {
-            showError('message', 'Message must be at least 10 characters long.');
-        } else {
-            $('#messageError').hide();
-            $(this).removeClass('error');
-        }
-    });
+    // $('#message').on('blur keyup', function () {
+    //     const val = $(this).val().trim();
+    //     if (val && val.length < 10) {
+    //         showError('message', 'Message must be at least 10 characters long.');
+    //     } else {
+    //         $('#messageError').hide();
+    //         $(this).removeClass('error');
+    //     }
+    // });
 });

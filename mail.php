@@ -20,6 +20,7 @@ ini_set('display_errors', 1);
 // Input validation and sanitization
 $name = trim($_POST['name'] ?? '');
 $email = trim($_POST['email'] ?? '');
+$company_name = trim($_POST['company_name'] ?? ''); // Optional field
 $phone = trim($_POST['phone'] ?? '');
 $service = trim($_POST['service'] ?? '');
 $message = trim($_POST['message'] ?? '');
@@ -41,6 +42,10 @@ if (empty($email)) {
     $errors[] = 'Invalid email address';
 } elseif (strlen($email) > 320) {
     $errors[] = 'Email address too long';
+}
+
+if (!empty($company_name) && strlen($company_name) > 100) {
+    $errors[] = 'Company name cannot exceed 100 characters';
 }
 
 if (empty($phone)) {
@@ -77,6 +82,7 @@ if (!empty($errors)) {
 // Sanitize input
 $name = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
 $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
+$company_name = htmlspecialchars($company_name, ENT_QUOTES, 'UTF-8'); // Optional field
 $phone = htmlspecialchars($phone, ENT_QUOTES, 'UTF-8');
 $service = htmlspecialchars($service, ENT_QUOTES, 'UTF-8');
 $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
@@ -243,10 +249,14 @@ try {
             </div>
             
             <div class='field'>
-                <span class='label'> Email Address</span>
-                <span class='value'><a href='mailto:$email'>$email</a></span>
+            <span class='label'> Email Address</span>
+            <span class='value'><a href='mailto:$email'>$email</a></span>
             </div>
             
+            <div class='field'>
+                <span class='label'> Company Name</span>
+                <span class='value'>$company_name</span>
+            </div>
             <div class='field'>
                 <span class='label'> Phone Number</span>
                 <span class='value'>$phone</span>
@@ -290,6 +300,9 @@ try {
     $mail->AltBody = "New Contact Form Submission\n\n" .
         "Name: $name\n" .
         "Email: $email\n" .
+        "Company Name: $company_name\n" .
+        "Phone: $phone\n" .
+        "Service: $service\n" .
         "Message: $message\n\n" .
         "Received on: " . date('F j, Y \a\t g:i A') . " (IST)";
 
