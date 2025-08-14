@@ -1,4 +1,5 @@
 <?php
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
@@ -8,10 +9,6 @@ require 'vendor/autoload.php'; // PHPMailer path
 // Set timezone to India
 date_default_timezone_set('Asia/Kolkata');
 
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Headers: Content-Type');
 
 // Enable error reporting for debugging (remove in production)
 error_reporting(E_ALL);
@@ -67,12 +64,10 @@ if (empty($message)) {
     $errors[] = 'Message cannot exceed 5000 characters';
 }
 
-// If there are validation errors, return them
+// If there are validation errors, redirect back with error parameter
 if (!empty($errors)) {
-    echo json_encode([
-        'status' => 'error',
-        'message' => implode('. ', $errors)
-    ]);
+    $errorMessage = urlencode(implode('. ', $errors));
+    header('Location: index.html?error=' . $errorMessage);
     exit;
 }
 
@@ -296,18 +291,11 @@ try {
         "Received on: " . date('F j, Y \a\t g:i A') . " (IST)";
 
 
-    // ✅ Success JSON (JS will redirect)
-    echo json_encode([
-        'status' => 'success',
-        'message' => 'Your message has been sent successfully!'
-    ]);
+    // ✅ Success - redirect to thank you page
+    header('Location: thank-you.html');
     exit;
-
 } catch (Exception $e) {
-    echo json_encode([
-        'status' => 'error',
-        'message' => 'Sorry, there was an error sending your message.'
-    ]);
+    $errorMessage = urlencode('Sorry, there was an error sending your message.');
+    header('Location: index.html?error=' . $errorMessage);
     exit;
 }
-?>

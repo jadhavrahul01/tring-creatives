@@ -52,10 +52,6 @@ document.addEventListener('keydown', function (e) {
 function resetForm() {
     document.getElementById('contactForm').reset();
     hideAllErrors();
-    $('#successMessage').hide();
-    $('#loadingDiv').hide();
-    $('#formContainer').show();
-    $('#submitBtn').prop('disabled', false).removeClass('loading');
     $('.form-control').removeClass('error');
 }
 
@@ -70,7 +66,7 @@ function showError(fieldId, message) {
     $('#' + fieldId).addClass('error');
 }
 
-// Validation
+// Form validation function
 function validateForm() {
     let isValid = true;
     hideAllErrors();
@@ -126,68 +122,22 @@ function validateForm() {
     return isValid;
 }
 
-// Form submission
+// Check for error parameters in URL and display them
 $(document).ready(function () {
-    $('#contactForm').on('submit', function (e) {
-        e.preventDefault();
+    // Get URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const errorMessage = urlParams.get('error');
 
-        if (!validateForm()) return;
+    if (errorMessage) {
+        // Decode the error message
+        const decodedError = decodeURIComponent(errorMessage);
 
-        $('#submitBtn').addClass('loading').prop('disabled', true);
-        $('#loadingDiv').show();
-        $('#formContainer').hide();
+        // Show error in a user-friendly way
+        alert('Error: ' + decodedError);
 
-        const formData = {
-            name: $('#name').val().trim(),
-            email: $('#email').val().trim(),
-            phone: $('#phone').val().trim(),
-            service: $('#service').val().trim(),
-            message: $('#message').val().trim()
-        };
-
-        $.ajax({
-            url: 'mail.php',
-            type: 'POST',
-            data: formData,
-            dataType: 'json',
-            timeout: 10000,
-            success: function (response) {
-                $('#loadingDiv').hide();
-                console.log('AJAX Response:', response);
-
-                if (response.status === 'success') {
-                    // Show success message
-                    $('#successMessage').show();
-                    $('#contactForm')[0].reset();
-
-                    console.log('Form submitted successfully, redirecting in 2 seconds...');
-                    // Wait 2 seconds, then redirect
-                    setTimeout(() => {
-                        // Direct redirect to thank you page using root-relative path
-                        const redirectUrl = window.location.origin + '/thank-you.html';
-                        console.log('Redirecting to:', redirectUrl);
-                        window.location.href = redirectUrl;
-                    }, 2000);
-                } else {
-                    // Show error and restore form
-                    $('#formContainer').show();
-                    $('#submitBtn').removeClass('loading').prop('disabled', false);
-                    alert('Error: ' + (response.message || 'Something went wrong.'));
-                }
-            },
-            error: function (xhr, status, error) {
-                $('#loadingDiv').hide();
-                $('#formContainer').show();
-                $('#submitBtn').removeClass('loading').prop('disabled', false);
-
-                let errorMessage = 'Network error. Please try again.';
-                if (status === 'timeout') {
-                    errorMessage = 'Request timeout. Please try again.';
-                }
-                alert(errorMessage);
-            }
-        });
-    });
+        // Clean up the URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
 
     // Real-time validation
     $('#name').on('blur keyup', function () {
