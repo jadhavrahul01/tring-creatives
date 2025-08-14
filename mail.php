@@ -23,7 +23,7 @@ $email = trim($_POST['email'] ?? '');
 $company_name = trim($_POST['company_name'] ?? ''); // Added company name field
 $phone = trim($_POST['phone'] ?? '');
 $service = trim($_POST['service'] ?? '');
-// $message = trim($_POST['message'] ?? '');
+$message = trim($_POST['message'] ?? '');
 
 // Validation
 $errors = [];
@@ -68,13 +68,9 @@ if (empty($service)) {
     $errors[] = 'Service cannot exceed 100 characters';
 }
 
-// if (empty($message)) {
-//     $errors[] = 'Message is required';
-// } elseif (strlen($message) < 10) {
-//     $errors[] = 'Message must be at least 10 characters long';
-// } elseif (strlen($message) > 5000) {
-//     $errors[] = 'Message cannot exceed 5000 characters';
-// }
+if (!empty($message) && strlen($message) > 5000) {
+    $errors[] = 'Message cannot exceed 5000 characters';
+}
 
 // If there are validation errors, return them
 if (!empty($errors)) {
@@ -309,7 +305,6 @@ try {
         "Company Name: $company_name\n" .
         "Phone: $phone\n" .
         "Service Interested In: $service\n" .
-        "Message: $message\n\n" .
         "Received on: " . date('F j, Y \a\t g:i A') . " (IST)";
 
     // Send email
