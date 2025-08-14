@@ -99,91 +99,38 @@
 
     <main class="privacy-policy py-5">
         <div class="container">
-            <div class="thank-you-container">
-                <div class="success-icon">
-                    <i class="fas fa-check-circle"></i>
-                </div>
+            <div class="container my-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-6">
+                        <div class="card text-center shadow-lg border-0 p-4">
 
-                <h1>Thank You!</h1>
-                <h2>Your Message Has Been Sent Successfully</h2>
+                            <!-- Success Icon -->
+                            <div class="success-icon mb-3" style="font-size: 60px; color: #28a745;">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
 
-                <p>We appreciate you reaching out to <strong>Tring Creatives</strong>. Your inquiry is important to us,
-                    and we'll get back to you within 24 hours.</p>
+                            <!-- Heading -->
+                            <h1 class="mb-2">Thank You!</h1>
+                            <h5 class="text-muted mb-3">Your Message Has Been Sent Successfully</h5>
 
-                <div class="features">
-                    <div class="feature">
-                        <div class="feature-icon">
-                            <i class="fas fa-clock"></i>
+                            <!-- Paragraph -->
+                            <p class="text-secondary">
+                                We appreciate you reaching out to <strong>Tring Creatives</strong>.
+                                Your inquiry is important to us, and we'll get back to you within 24 hours.
+                            </p>
+
+                            <!-- Button -->
+                            <div class="mt-4">
+                                <a href="index.html" class="btn btn-primary px-4">
+                                    <i class="fas fa-home"></i> Back to Homepage
+                                </a>
+                            </div>
+
                         </div>
-                        <h3>Quick Response</h3>
-                        <p>We'll respond within 24 hours</p>
-                    </div>
-
-                    <div class="feature">
-                        <div class="feature-icon">
-                            <i class="fas fa-lightbulb"></i>
-                        </div>
-                        <h3>Creative Solutions</h3>
-                        <p>Tailored strategies for your business</p>
-                    </div>
-
-                    <div class="feature">
-                        <div class="feature-icon">
-                            <i class="fas fa-handshake"></i>
-                        </div>
-                        <h3>Professional Service</h3>
-                        <p>Committed to your success</p>
-                    </div>
-                </div>
-
-                <div class="cta-buttons">
-                    <a href="index.html" class="btn btn-primary">
-                        <i class="fas fa-home"></i> Back to Homepage
-                    </a>
-                    <a href="services.html" class="btn btn-outline">
-                        <i class="fas fa-briefcase"></i> Our Services
-                    </a>
-                </div>
-
-                <div class="contact-info">
-                    <h3>Need Immediate Assistance?</h3>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>+91 12345 67890</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>hello@tringcreatives.com</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Pune, Maharashtra</span>
                     </div>
                 </div>
             </div>
 
-            <script>
-                // Optional: Auto redirect to homepage after 30 seconds
-                // setTimeout(() => {
-                //     if (confirm('Would you like to return to the homepage?')) {
-                //         window.location.href = 'index.html';
-                //     }
-                // }, 30000);
-
-                // Add some interactive elements
-                document.addEventListener('DOMContentLoaded', function () {
-                    // Add click effect to buttons
-                    const buttons = document.querySelectorAll('.btn');
-                    buttons.forEach(btn => {
-                        btn.addEventListener('click', function () {
-                            this.style.transform = 'scale(0.95)';
-                            setTimeout(() => {
-                                this.style.transform = '';
-                            }, 100);
-                        });
-                    });
-                });
-            </script>
         </div>
     </main>
 
