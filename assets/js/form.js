@@ -35,7 +35,6 @@ document.addEventListener("click", function (e) {
     }
 });
 
-
 // Close events
 span.onclick = closeModal;
 window.onclick = function (event) {
@@ -108,7 +107,6 @@ function validateForm() {
         isValid = false;
     }
 
-
     if (service === '') {
         showError('service', 'Service is required.');
         isValid = false;
@@ -155,29 +153,34 @@ $(document).ready(function () {
             timeout: 10000,
             success: function (response) {
                 $('#loadingDiv').hide();
+                
                 if (response.status === 'success') {
+                    // Show success message
                     $('#successMessage').show();
                     $('#contactForm')[0].reset();
- 
+                    
+                    // Wait 2 seconds, then redirect
                     setTimeout(() => {
-                        closeModal();
-                        setTimeout(() => {
-                            window.location.href = 'thank-you.html';
-                        }, 500); // modal close animation ka wait
-                    }, 3000);
-                }
-                else {
+                        // Direct redirect to thank you page
+                        window.location.href = 'thank-you.html';
+                    }, 2000);
+                } else {
+                    // Show error and restore form
                     $('#formContainer').show();
+                    $('#submitBtn').removeClass('loading').prop('disabled', false);
                     alert('Error: ' + (response.message || 'Something went wrong.'));
                 }
             },
-            error: function (xhr, status) {
+            error: function (xhr, status, error) {
                 $('#loadingDiv').hide();
                 $('#formContainer').show();
-                alert(status === 'timeout' ? 'Request timeout. Please try again.' : 'Network error. Please try again.');
-            },
-            complete: function () {
                 $('#submitBtn').removeClass('loading').prop('disabled', false);
+                
+                let errorMessage = 'Network error. Please try again.';
+                if (status === 'timeout') {
+                    errorMessage = 'Request timeout. Please try again.';
+                }
+                alert(errorMessage);
             }
         });
     });
@@ -185,15 +188,23 @@ $(document).ready(function () {
     // Real-time validation
     $('#name').on('blur keyup', function () {
         const val = $(this).val().trim();
-        if (val && val.length < 2) showError('name', 'Name must be at least 2 characters long.');
-        else $('#nameError').hide().prev().removeClass('error');
+        if (val && val.length < 2) {
+            showError('name', 'Name must be at least 2 characters long.');
+        } else {
+            $('#nameError').hide();
+            $(this).removeClass('error');
+        }
     });
 
     $('#email').on('blur keyup', function () {
         const val = $(this).val().trim();
         const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (val && !pattern.test(val)) showError('email', 'Please enter a valid email address.');
-        else $('#emailError').hide().prev().removeClass('error');
+        if (val && !pattern.test(val)) {
+            showError('email', 'Please enter a valid email address.');
+        } else {
+            $('#emailError').hide();
+            $(this).removeClass('error');
+        }
     });
 
     $('#phone').on('blur keyup', function () {
@@ -203,19 +214,28 @@ $(document).ready(function () {
         if (val && !indianPhoneRegex.test(val)) {
             showError('phone', 'Please enter a valid phone number.');
         } else {
-            $('#phoneError').hide().prev().removeClass('error');
+            $('#phoneError').hide();
+            $(this).removeClass('error');
         }
     });
 
     $('#service').on('blur keyup', function () {
         const val = $(this).val().trim();
-        if (val && val.length < 2) showError('service', 'Service must be at least 2 characters long.');
-        else $('#serviceError').hide().prev().removeClass('error');
+        if (val && val.length < 2) {
+            showError('service', 'Service must be at least 2 characters long.');
+        } else {
+            $('#serviceError').hide();
+            $(this).removeClass('error');
+        }
     });
 
     $('#message').on('blur keyup', function () {
         const val = $(this).val().trim();
-        if (val && val.length < 10) showError('message', 'Message must be at least 10 characters long.');
-        else $('#messageError').hide().prev().removeClass('error');
+        if (val && val.length < 10) {
+            showError('message', 'Message must be at least 10 characters long.');
+        } else {
+            $('#messageError').hide();
+            $(this).removeClass('error');
+        }
     });
 });
