@@ -20,9 +20,10 @@ ini_set('display_errors', 1);
 // Input validation and sanitization
 $name = trim($_POST['name'] ?? '');
 $email = trim($_POST['email'] ?? '');
+$company_name = trim($_POST['company_name'] ?? ''); // Added company name field
 $phone = trim($_POST['phone'] ?? '');
 $service = trim($_POST['service'] ?? '');
-$message = trim($_POST['message'] ?? '');
+// $message = trim($_POST['message'] ?? '');
 
 // Validation
 $errors = [];
@@ -43,6 +44,14 @@ if (empty($email)) {
     $errors[] = 'Email address too long';
 }
 
+if (empty($company_name)) {
+    $errors[] = 'Company name is required';
+} elseif (strlen($company_name) < 2) {
+    $errors[] = 'Company name must be at least 2 characters long';
+} elseif (strlen($company_name) > 100) {
+    $errors[] = 'Company name cannot exceed 100 characters';
+}
+
 if (empty($phone)) {
     $errors[] = 'Phone number is required';
 } elseif (!preg_match('/^(\+91[\-\s]?)?[6-9]\d{9}$/', $phone)) {
@@ -59,13 +68,13 @@ if (empty($service)) {
     $errors[] = 'Service cannot exceed 100 characters';
 }
 
-if (empty($message)) {
-    $errors[] = 'Message is required';
-} elseif (strlen($message) < 10) {
-    $errors[] = 'Message must be at least 10 characters long';
-} elseif (strlen($message) > 5000) {
-    $errors[] = 'Message cannot exceed 5000 characters';
-}
+// if (empty($message)) {
+//     $errors[] = 'Message is required';
+// } elseif (strlen($message) < 10) {
+//     $errors[] = 'Message must be at least 10 characters long';
+// } elseif (strlen($message) > 5000) {
+//     $errors[] = 'Message cannot exceed 5000 characters';
+// }
 
 // If there are validation errors, return them
 if (!empty($errors)) {
@@ -79,6 +88,7 @@ if (!empty($errors)) {
 // Sanitize input
 $name = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
 $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
+$company_name = htmlspecialchars($company_name, ENT_QUOTES, 'UTF-8'); // Sanitize company name
 $phone = htmlspecialchars($phone, ENT_QUOTES, 'UTF-8');
 $service = htmlspecialchars($service, ENT_QUOTES, 'UTF-8');
 $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
@@ -245,10 +255,14 @@ try {
             </div>
             
             <div class='field'>
-                <span class='label'> Email Address</span>
-                <span class='value'><a href='mailto:$email'>$email</a></span>
+            <span class='label'> Email Address</span>
+            <span class='value'><a href='mailto:$email'>$email</a></span>
             </div>
             
+            <div class='field'>
+                <span class='label'> Company Name</span>
+                <span class='value'>$company_name</span>
+            </div>
             <div class='field'>
                 <span class='label'> Phone Number</span>
                 <span class='value'>$phone</span>
@@ -292,6 +306,9 @@ try {
     $mail->AltBody = "New Contact Form Submission\n\n" .
         "Name: $name\n" .
         "Email: $email\n" .
+        "Company Name: $company_name\n" .
+        "Phone: $phone\n" .
+        "Service Interested In: $service\n" .
         "Message: $message\n\n" .
         "Received on: " . date('F j, Y \a\t g:i A') . " (IST)";
 

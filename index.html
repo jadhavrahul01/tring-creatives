@@ -655,70 +655,52 @@
 
     <div id="myModal" class="modal">
         <div class="modal-content d-flex flex-row flex-wrap align-items-center col-lg-12">
-            <!-- Left Side Image -->
-            <!-- <div class="modal-left d-lg-block d-none col-lg-6">
-                <img src="./assets/images/banner/bell-bg.png" alt="Offer Image">
-            </div> -->
-            <!-- Right Side Form -->
             <div class="modal-right col-lg-12 col-12">
                 <span class="close">&times;</span>
 
-                <!-- Success Message -->
-                <div class="success-message" id="successMessage">
-                    <i class="fas fa-check-circle"></i>
-                    <h5>Success!</h5>
-                    <p>Your message has been sent successfully. We'll get back to you soon!</p>
-                </div>
+                <h2><span>Ring us</span> now!</h2>
+                <p class="text-dark">Reach Out. Stand Out. Let’s Go!</p>
 
-                <!-- Loading -->
-                <div class="loading" id="loadingDiv">
-                    <div class="spinner"></div>
-                    <h5>Sending your message...</h5>
-                    <p>Please wait while we process your request.</p>
-                </div>
+                <form action="mail.php" method="POST" onsubmit="return validateForm()">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                        <div class="error-message" id="nameError"></div>
+                    </div>
 
-                <!-- Form Container -->
-                <div id="formContainer">
-                    <h2><span>Ring us</span> now!</h2>
-                    <p class="text-dark">Reach Out. Stand Out. Let’s Go!</p>
+                    <div class="form-group">
+                        <label for="phone">Mobile Number *</label>
+                        <input type="tel" id="phone" name="phone" class="form-control" required>
+                        <div class="error-message" id="phoneError"></div>
+                    </div>
 
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Name *</label>
-                            <input type="text" id="name" name="name" class="form-control">
-                            <div class="error-message" id="nameError"></div>
-                        </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                        <div class="error-message" id="emailError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="company_name">Company Name *</label>
+                        <input type="text" id="company_name" name="company_name" class="form-control" required>
+                        <div class="error-message" id="company_nameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Services You’re Interested In *</label>
+                        <input type="text" id="service" name="service" class="form-control" required>
+                        <div class="error-message" id="serviceError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Please enter the details of your request</label>
+                        <textarea id="message" name="message" class="form-control"></textarea>
+                        <div class="error-message" id="messageError"></div>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="phone">Mobile Number *</label>
-                            <input type="phone" id="phone" name="phone" class="form-control">
-                            <div class="error-message" id="phoneError"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" class="form-control">
-                            <div class="error-message" id="emailError"></div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="service">Services You’re Interested In *</label>
-                            <input type="text" id="service" name="service" class="form-control">
-                            <div class="error-message" id="serviceError"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Please enter the details of your request *</label>
-                            <textarea id="message" name="message" class="form-control"></textarea>
-                            <div class="error-message" id="messageError"></div>
-                        </div>
-
-                        <div class="text-end">
-                            <button type="submit" id="submitBtn" class="btn-submit">
-                                <span class="btn-spinner"></span>
-                                <span class="btn-text">Submit</span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                    <div class="text-end">
+                        <button type="submit" id="submitBtn" class="btn-submit">
+                            <span class="btn-text">Submit</span>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

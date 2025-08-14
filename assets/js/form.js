@@ -79,9 +79,10 @@ function validateForm() {
 
     const name = $('#name').val().trim();
     const email = $('#email').val().trim();
+    const company_name = $('#company_name').val().trim();
     const phone = $('#phone').val().trim();
     const service = $('#service').val().trim();
-    const message = $('#message').val().trim();
+    // const message = $('#message').val().trim();
 
     if (name === '') {
         showError('name', 'Name is required.');
@@ -97,6 +98,14 @@ function validateForm() {
         isValid = false;
     } else if (!emailPattern.test(email)) {
         showError('email', 'Please enter a valid email address.');
+        isValid = false;
+    }
+
+    if (company_name === '') {
+        showError('company_name', 'Company name is required.');
+        isValid = false;
+    } else if (company_name.length < 2) {
+        showError('company_name', 'Company name must be at least 2 characters long.');
         isValid = false;
     }
 
@@ -117,13 +126,13 @@ function validateForm() {
         isValid = false;
     }
 
-    if (message === '') {
-        showError('message', 'Message is required.');
-        isValid = false;
-    } else if (message.length < 10) {
-        showError('message', 'Message must be at least 10 characters long.');
-        isValid = false;
-    }
+    // if (message === '') {
+    //     showError('message', 'Message is required.');
+    //     isValid = false;
+    // } else if (message.length < 10) {
+    //     showError('message', 'Message must be at least 10 characters long.');
+    //     isValid = false;
+    // }
 
     return isValid;
 }
@@ -142,6 +151,7 @@ $(document).ready(function () {
         const formData = {
             name: $('#name').val().trim(),
             email: $('#email').val().trim(),
+            company_name: $('#company_name').val().trim(),
             phone: $('#phone').val().trim(),
             service: $('#service').val().trim(),
             message: $('#message').val().trim()
@@ -189,6 +199,12 @@ $(document).ready(function () {
         else $('#emailError').hide().prev().removeClass('error');
     });
 
+    $('#company_name').on('blur keyup', function () {
+        const val = $(this).val().trim();
+        if (val && val.length < 2) showError('company_name', 'Company name must be at least 2 characters long.');
+        else $('#company_nameError').hide().prev().removeClass('error');
+    });
+
     $('#phone').on('blur keyup', function () {
         const val = $(this).val().trim();
         const indianPhoneRegex = /^(\+91[\-\s]?)?[6-9]\d{9}$/;
@@ -206,9 +222,9 @@ $(document).ready(function () {
         else $('#serviceError').hide().prev().removeClass('error');
     });
 
-    $('#message').on('blur keyup', function () {
-        const val = $(this).val().trim();
-        if (val && val.length < 10) showError('message', 'Message must be at least 10 characters long.');
-        else $('#messageError').hide().prev().removeClass('error');
-    });
+    // $('#message').on('blur keyup', function () {
+    //     const val = $(this).val().trim();
+    //     if (val && val.length < 10) showError('message', 'Message must be at least 10 characters long.');
+    //     else $('#messageError').hide().prev().removeClass('error');
+    // });
 });
