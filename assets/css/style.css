@@ -345,6 +345,9 @@ body {
     font-size: 3.5rem;
     font-weight: 300;
     margin-bottom: 20px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    margin-top: 60px !important;
 }
 
 .global-voice-section h3 {
@@ -361,6 +364,8 @@ body {
     font-size: 1.3rem;
     font-weight: 300;
     margin-bottom: 20px;
+    text-align: justify;
+    line-height: 2;
 }
 
 .top-content {
