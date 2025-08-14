@@ -93,8 +93,12 @@
     }
 
     .star-icon {
-        width: 119px;
+        width: 160px;
         margin-left: 4px;
+    }
+
+    .stats-section {
+        margin-top: 4em !important;
     }
 
     .global-voice-info {
