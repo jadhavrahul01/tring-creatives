@@ -158,8 +158,15 @@ $(document).ready(function () {
                 if (response.status === 'success') {
                     $('#successMessage').show();
                     $('#contactForm')[0].reset();
-                    setTimeout(() => closeModal(), 3000);
-                } else {
+ 
+                    setTimeout(() => {
+                        closeModal();
+                        setTimeout(() => {
+                            window.location.href = 'thank-you.html';
+                        }, 500); // modal close animation ka wait
+                    }, 3000);
+                }
+                else {
                     $('#formContainer').show();
                     alert('Error: ' + (response.message || 'Something went wrong.'));
                 }

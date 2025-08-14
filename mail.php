@@ -295,19 +295,18 @@ try {
         "Message: $message\n\n" .
         "Received on: " . date('F j, Y \a\t g:i A') . " (IST)";
 
-    // Send email
-    $mail->send();
 
-    $mail->send();
-    header("Location: thank-you.html");
+    // ✅ Success JSON (JS will redirect)
+    echo json_encode([
+        'status' => 'success',
+        'message' => 'Your message has been sent successfully!'
+    ]);
     exit;
 
 } catch (Exception $e) {
-    // Log error and return response
-    error_log('Mailer Error: ' . $mail->ErrorInfo);
     echo json_encode([
         'status' => 'error',
-        'message' => 'Failed to send email. Please try again later.'
+        'message' => 'Sorry, there was an error sending your message.'
     ]);
     exit;
 }
