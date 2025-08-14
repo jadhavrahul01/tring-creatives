@@ -64,13 +64,13 @@ if (empty($service)) {
     $errors[] = 'Service cannot exceed 100 characters';
 }
 
-if (empty($message)) {
-    $errors[] = 'Message is required';
-} elseif (strlen($message) < 10) {
-    $errors[] = 'Message must be at least 10 characters long';
-} elseif (strlen($message) > 5000) {
-    $errors[] = 'Message cannot exceed 5000 characters';
-}
+// if (empty($message)) {
+//     $errors[] = 'Message is required';
+// } elseif (strlen($message) < 10) {
+//     $errors[] = 'Message must be at least 10 characters long';
+// } elseif (strlen($message) > 5000) {
+//     $errors[] = 'Message cannot exceed 5000 characters';
+// }
 
 // If there are validation errors, redirect back with error parameter
 if (!empty($errors)) {
