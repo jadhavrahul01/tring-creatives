@@ -3,13 +3,13 @@ var modal = document.getElementById("myModal");
 var bellBtn = document.getElementById("openModal");
 var span = document.getElementsByClassName("close")[0];
 
-// Open modal function
+// Open modal
 function openModal() {
     modal.style.display = "block";
     setTimeout(() => modal.classList.add("show"), 10);
 }
 
-// Close modal function
+// Close modal
 function closeModal() {
     modal.classList.remove("show");
     setTimeout(() => {
@@ -18,12 +18,10 @@ function closeModal() {
     }, 400);
 }
 
-// Event Listeners for opening
+// Open modal triggers
 if (bellBtn) {
     bellBtn.onclick = openModal;
 }
-
-// ✅ Event delegation for ALL target buttons/links
 document.addEventListener("click", function (e) {
     if (
         e.target.closest(".btn-contact") ||
@@ -35,23 +33,18 @@ document.addEventListener("click", function (e) {
     }
 });
 
-
-// Close events
+// Close modal triggers
 span.onclick = closeModal;
 window.onclick = function (event) {
-    if (event.target == modal) {
-        closeModal();
-    }
+    if (event.target === modal) closeModal();
 };
 document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-        closeModal();
-    }
+    if (e.key === 'Escape') closeModal();
 });
 
 // Reset form
 function resetForm() {
-    document.getElementById('contactForm').reset();
+    $('#contactForm')[0].reset();
     hideAllErrors();
     $('#successMessage').hide();
     $('#loadingDiv').hide();
@@ -60,12 +53,12 @@ function resetForm() {
     $('.form-control').removeClass('error');
 }
 
-// Hide all error messages
+// Hide all errors
 function hideAllErrors() {
     $('.error-message').hide();
 }
 
-// Show error message
+// Show field error
 function showError(fieldId, message) {
     $('#' + fieldId + 'Error').text(message).show();
     $('#' + fieldId).addClass('error');
@@ -84,55 +77,31 @@ function validateForm() {
     const service = $('#service').val().trim();
     const message = $('#message').val().trim();
 
-    if (name === '') {
-        showError('name', 'Name is required.');
-        isValid = false;
-    } else if (name.length < 2) {
-        showError('name', 'Name must be at least 2 characters long.');
+    if (name === '' || name.length < 2) {
+        showError('name', name === '' ? 'Name is required.' : 'Name must be at least 2 characters long.');
         isValid = false;
     }
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (email === '') {
-        showError('email', 'Email is required.');
-        isValid = false;
-    } else if (!emailPattern.test(email)) {
-        showError('email', 'Please enter a valid email address.');
+    if (email === '' || !emailPattern.test(email)) {
+        showError('email', email === '' ? 'Email is required.' : 'Please enter a valid email address.');
         isValid = false;
     }
 
-    if (company_name === '') {
-        showError('company_name', 'Company name is required.');
-        isValid = false;
-    } else if (company_name.length < 2) {
-        showError('company_name', 'Company name must be at least 2 characters long.');
+    if (company_name === '' || company_name.length < 2) {
+        showError('company_name', company_name === '' ? 'Company name is required.' : 'Company name must be at least 2 characters long.');
         isValid = false;
     }
 
-    if (phone === '') {
-        showError('phone', 'Phone number is required.');
-        isValid = false;
-    } else if (!/^(\+91[\-\s]?)?[6-9]\d{9}$/.test(phone)) {
-        showError('phone', 'Please enter a valid phone number.');
+    if (phone === '' || !/^(\+91[\-\s]?)?[6-9]\d{9}$/.test(phone)) {
+        showError('phone', phone === '' ? 'Phone number is required.' : 'Please enter a valid phone number.');
         isValid = false;
     }
 
-
-    if (service === '') {
-        showError('service', 'Service is required.');
-        isValid = false;
-    } else if (service.length < 2) {
-        showError('service', 'Service must be at least 2 characters long.');
+    if (service === '' || service.length < 2) {
+        showError('service', service === '' ? 'Service is required.' : 'Service must be at least 2 characters long.');
         isValid = false;
     }
-
-    // if (message === '') {
-    //     showError('message', 'Message is required.');
-    //     isValid = false;
-    // } else if (message.length < 10) {
-    //     showError('message', 'Message must be at least 10 characters long.');
-    //     isValid = false;
-    // }
 
     return isValid;
 }
@@ -141,21 +110,13 @@ function validateForm() {
 $(document).ready(function () {
     $('#contactForm').on('submit', function (e) {
         e.preventDefault();
-
         if (!validateForm()) return;
 
         $('#submitBtn').addClass('loading').prop('disabled', true);
         $('#loadingDiv').show();
         $('#formContainer').hide();
 
-        const formData = {
-            name: $('#name').val().trim(),
-            email: $('#email').val().trim(),
-            company_name: $('#company_name').val().trim(),
-            phone: $('#phone').val().trim(),
-            service: $('#service').val().trim(),
-            message: $('#message').val().trim()
-        };
+        const formData = $('#contactForm').serialize(); // sends form as x-www-form-urlencoded
 
         $.ajax({
             url: 'mail.php',
@@ -171,13 +132,13 @@ $(document).ready(function () {
                     setTimeout(() => closeModal(), 3000);
                 } else {
                     $('#formContainer').show();
-                    alert('Error: ' + (response.message || 'Something went wrong.'));
+                    showErrorMessage(response.message || 'Something went wrong.');
                 }
             },
             error: function (xhr, status) {
                 $('#loadingDiv').hide();
                 $('#formContainer').show();
-                alert(status === 'timeout' ? 'Request timeout. Please try again.' : 'Network error. Please try again.');
+                showErrorMessage(status === 'timeout' ? 'Request timeout. Please try again.' : 'Network error. Please try again.');
             },
             complete: function () {
                 $('#submitBtn').removeClass('loading').prop('disabled', false);
@@ -185,46 +146,10 @@ $(document).ready(function () {
         });
     });
 
-    // Real-time validation
-    $('#name').on('blur keyup', function () {
-        const val = $(this).val().trim();
-        if (val && val.length < 2) showError('name', 'Name must be at least 2 characters long.');
-        else $('#nameError').hide().prev().removeClass('error');
-    });
-
-    $('#email').on('blur keyup', function () {
-        const val = $(this).val().trim();
-        const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (val && !pattern.test(val)) showError('email', 'Please enter a valid email address.');
-        else $('#emailError').hide().prev().removeClass('error');
-    });
-
-    $('#company_name').on('blur keyup', function () {
-        const val = $(this).val().trim();
-        if (val && val.length < 2) showError('company_name', 'Company name must be at least 2 characters long.');
-        else $('#company_nameError').hide().prev().removeClass('error');
-    });
-
-    $('#phone').on('blur keyup', function () {
-        const val = $(this).val().trim();
-        const indianPhoneRegex = /^(\+91[\-\s]?)?[6-9]\d{9}$/;
-
-        if (val && !indianPhoneRegex.test(val)) {
-            showError('phone', 'Please enter a valid phone number.');
-        } else {
-            $('#phoneError').hide().prev().removeClass('error');
-        }
-    });
-
-    $('#service').on('blur keyup', function () {
-        const val = $(this).val().trim();
-        if (val && val.length < 2) showError('service', 'Service must be at least 2 characters long.');
-        else $('#serviceError').hide().prev().removeClass('error');
-    });
-
-    // $('#message').on('blur keyup', function () {
-    //     const val = $(this).val().trim();
-    //     if (val && val.length < 10) showError('message', 'Message must be at least 10 characters long.');
-    //     else $('#messageError').hide().prev().removeClass('error');
-    // });
+    function showErrorMessage(msg) {
+        $('<div class="form-global-error">' + msg + '</div>')
+            .css({ color: 'red', marginTop: '10px', textAlign: 'center' })
+            .appendTo('#formContainer')
+            .delay(4000).fadeOut();
+    }
 });
