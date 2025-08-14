@@ -582,7 +582,6 @@
 
     <!-- Overlay -->
     <div class="consent-overlay" id="consentOverlay"></div>
-
     <!-- Glass Cookie Consent Banner -->
     <div class="consent-banner" id="cookieConsent">
         <div class="consent-content">
@@ -597,145 +596,8 @@
             </div>
         </div>
     </div>
-
     <!-- Status Message -->
     <div class="status-message" id="statusMessage"></div>
-
-    <script>
-        // Check if user has already made a choice
-        function checkConsentStatus() {
-            // Using a simple variable instead of localStorage for demo
-            return window.cookieConsentChoice || null;
-        }
-
-        // Store consent choice (using variable instead of localStorage)
-        function storeConsent(choice) {
-            window.cookieConsentChoice = choice;
-        }
-
-        // Show status message
-        function showStatusMessage(message, type = 'success') {
-            const statusEl = document.getElementById('statusMessage');
-            statusEl.textContent = message;
-            statusEl.className = `status-message ${type} show`;
-
-            setTimeout(() => {
-                statusEl.classList.remove('show');
-            }, 3000);
-        }
-
-        // Show the consent banner
-        function showConsentBanner() {
-            const banner = document.getElementById('cookieConsent');
-            const overlay = document.getElementById('consentOverlay');
-            const body = document.body;
-
-            console.log('🍪 Showing consent banner');
-
-            // Show overlay first
-            overlay.classList.add('show');
-            body.classList.add('no-scroll');
-
-            // Show banner with a small delay for smooth animation
-            setTimeout(() => {
-                banner.classList.add('show');
-            }, 100);
-        }
-
-        function hideConsentBanner() {
-            const banner = document.getElementById('cookieConsent');
-            const overlay = document.getElementById('consentOverlay');
-            const body = document.body;
-
-            console.log('🍪 Hiding consent banner');
-
-            // Hide banner first
-            banner.classList.remove('show');
-
-            // Hide overlay after banner animation completes
-            setTimeout(() => {
-                overlay.classList.remove('show');
-                body.classList.remove('no-scroll');
-            }, 400); // Match the transition duration
-        }
-
-        // Handle user consent choice
-        function handleConsent(choice) {
-            console.log(`🍪 User selected: ${choice}`);
-
-            // Store the user's choice
-            storeConsent(choice);
-
-            // Hide the banner
-            hideConsentBanner();
-
-            // Show status message and handle different choices
-            switch (choice) {
-                case 'accept':
-                    showStatusMessage('✅ All cookies accepted!', 'success');
-                    // Here you would load all tracking, analytics, marketing cookies
-                    loadAllCookies();
-                    break;
-                case 'reject':
-                    showStatusMessage('❌ Non-essential cookies rejected. Only essential cookies loaded.', 'error');
-                    // Here you would only load essential cookies
-                    loadEssentialCookies();
-                    break;
-            }
-        }
-
-        // Demo functions for cookie loading
-        function loadAllCookies() {
-            console.log('📊 Loading all cookies: Analytics, Marketing, Social Media, etc.');
-            // Your actual cookie/tracking code would go here
-        }
-
-        function loadEssentialCookies() {
-            console.log('🔒 Loading only essential cookies for basic site functionality');
-            // Your essential cookie code would go here
-        }
-
-        // Reset consent for demo purposes
-        function resetConsent() {
-            window.cookieConsentChoice = null;
-            showStatusMessage('🔄 Consent reset! Banner will show again.', 'success');
-            setTimeout(() => {
-                showConsentBanner();
-            }, 1000);
-        }
-
-        // Initialize on page load
-        window.addEventListener('load', function () {
-            const existingConsent = checkConsentStatus();
-
-            console.log('🍪 Checking consent status:', existingConsent);
-
-            if (!existingConsent) {
-                // Show banner after a delay
-                setTimeout(function () {
-                    showConsentBanner();
-                }, 1500);
-            } else {
-                console.log('🍪 User has already given consent:', existingConsent);
-                // Load cookies based on previous choice
-                if (existingConsent === 'accept') {
-                    loadAllCookies();
-                } else {
-                    loadEssentialCookies();
-                }
-            }
-        });
-
-        // Handle escape key to close banner (accessibility)
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') {
-                const banner = document.getElementById('cookieConsent');
-                if (banner.classList.contains('show')) {
-                    handleConsent('reject'); // Default to reject on escape
-                }
-            }
-        });
-    </script>
 
     <footer class="footer">
         <div class="background-text">

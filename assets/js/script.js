@@ -267,4 +267,117 @@ document.querySelectorAll('.service-slider-wrapper').forEach(wrapper => {
   cardTwo.addEventListener('click', () => {
     if (showingCard === 2) showCardOne();
   });
-}); 
+});
+
+
+// ==================== Cookie Consent Management ====================
+function checkConsentStatus() {
+  return window.cookieConsentChoice || null;
+}
+
+function storeConsent(choice) {
+  window.cookieConsentChoice = choice;
+}
+
+function showStatusMessage(message, type = 'success') {
+  const statusEl = document.getElementById('statusMessage');
+  statusEl.textContent = message;
+  statusEl.className = `status-message ${type} show`;
+
+  setTimeout(() => {
+    statusEl.classList.remove('show');
+  }, 3000);
+}
+
+function showConsentBanner() {
+  const banner = document.getElementById('cookieConsent');
+  const overlay = document.getElementById('consentOverlay');
+  const body = document.body;
+
+  console.log('🍪 Showing consent banner');
+
+  overlay.classList.add('show');
+  body.classList.add('no-scroll');
+
+  setTimeout(() => {
+    banner.classList.add('show');
+  }, 100);
+}
+
+function hideConsentBanner() {
+  const banner = document.getElementById('cookieConsent');
+  const overlay = document.getElementById('consentOverlay');
+  const body = document.body;
+
+  console.log('🍪 Hiding consent banner');
+
+  banner.classList.remove('show');
+
+  setTimeout(() => {
+    overlay.classList.remove('show');
+    body.classList.remove('no-scroll');
+  }, 400);
+}
+
+function handleConsent(choice) {
+  console.log(`🍪 User selected: ${choice}`);
+
+  storeConsent(choice);
+
+  hideConsentBanner();
+
+  switch (choice) {
+    case 'accept':
+      showStatusMessage('✅ All cookies accepted!', 'success');
+      loadAllCookies();
+      break;
+    case 'reject':
+      showStatusMessage('❌ Non-essential cookies rejected. Only essential cookies loaded.', 'error');
+      loadEssentialCookies();
+      break;
+  }
+}
+
+function loadAllCookies() {
+  console.log('📊 Loading all cookies: Analytics, Marketing, Social Media, etc.');
+}
+
+function loadEssentialCookies() {
+  console.log('🔒 Loading only essential cookies for basic site functionality');
+}
+
+function resetConsent() {
+  window.cookieConsentChoice = null;
+  showStatusMessage('🔄 Consent reset! Banner will show again.', 'success');
+  setTimeout(() => {
+    showConsentBanner();
+  }, 1000);
+}
+
+window.addEventListener('load', function () {
+  const existingConsent = checkConsentStatus();
+
+  console.log('🍪 Checking consent status:', existingConsent);
+
+  if (!existingConsent) {
+    setTimeout(function () {
+      showConsentBanner();
+    }, 1500);
+  } else {
+    console.log('🍪 User has already given consent:', existingConsent);
+    if (existingConsent === 'accept') {
+      loadAllCookies();
+    } else {
+      loadEssentialCookies();
+    }
+  }
+});
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') {
+    const banner = document.getElementById('cookieConsent');
+    if (banner.classList.contains('show')) {
+      handleConsent('reject');
+    }
+  }
+});
