@@ -9,7 +9,10 @@ require 'vendor/autoload.php'; // PHPMailer path
 // Set timezone to India
 date_default_timezone_set('Asia/Kolkata');
 
-
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Headers: Content-Type');
 // Enable error reporting for debugging (remove in production)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -290,6 +293,7 @@ try {
         "Message: $message\n\n" .
         "Received on: " . date('F j, Y \a\t g:i A') . " (IST)";
 
+    $mail->send();
 
     // ✅ Success - redirect to thank you page
     header('Location: thank-you.html');
