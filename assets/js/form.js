@@ -153,16 +153,20 @@ $(document).ready(function () {
             timeout: 10000,
             success: function (response) {
                 $('#loadingDiv').hide();
-                
+                console.log('AJAX Response:', response);
+
                 if (response.status === 'success') {
                     // Show success message
                     $('#successMessage').show();
                     $('#contactForm')[0].reset();
-                    
+
+                    console.log('Form submitted successfully, redirecting in 2 seconds...');
                     // Wait 2 seconds, then redirect
                     setTimeout(() => {
-                        // Direct redirect to thank you page
-                        window.location.href = 'thank-you.html';
+                        // Direct redirect to thank you page using root-relative path
+                        const redirectUrl = window.location.origin + '/thank-you.html';
+                        console.log('Redirecting to:', redirectUrl);
+                        window.location.href = redirectUrl;
                     }, 2000);
                 } else {
                     // Show error and restore form
@@ -175,7 +179,7 @@ $(document).ready(function () {
                 $('#loadingDiv').hide();
                 $('#formContainer').show();
                 $('#submitBtn').removeClass('loading').prop('disabled', false);
-                
+
                 let errorMessage = 'Network error. Please try again.';
                 if (status === 'timeout') {
                     errorMessage = 'Request timeout. Please try again.';
