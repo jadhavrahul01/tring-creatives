@@ -699,6 +699,15 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const modal = document.getElementById("myModal");
+            modal.style.display = "block"; // Show modal
+            setTimeout(() => {
+                modal.classList.add("show"); // Optional fade-in class if your CSS supports it
+            }, 10);
+        });
+    </script>
 
     <div class="bell-icon">
         <img src="./assets/images/icons/bell.png" alt="Bell" id="openModal">
